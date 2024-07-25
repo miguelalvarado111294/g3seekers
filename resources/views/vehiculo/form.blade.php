@@ -1,0 +1,72 @@
+<h1>{{$modo}} Vehiculos </h1>
+<br>
+    <div class="form-group">
+        <label for="marca">Marca del Vehiculo</label>
+        <input type="text" class="form-control" name="marca"
+        value="{{ isset($vehiculo->marca)?$vehiculo->marca:old('marca')}}" id="marca">
+        @error('marca');
+        <small style ="color: red"> {{$message}}</small>
+        @enderror
+        <br>
+    </div>
+
+    <div class="form-group">
+    <label for="modelo">Modelo del Vehiculo</label>
+    <input type="text" class="form-control" name="modelo"
+    value="{{isset($vehiculo->modelo)?$vehiculo->modelo:old('modelo') }}" id="modelo">
+    @error('modelo');
+    <small style ="color: red"> {{$message}}</small>
+    @enderror
+    <br>
+    </div>
+
+    <div class="form-group">
+    <label for="noserie">Numero de Serie</label>
+    <input type="text" class="form-control" name="noserie"
+    value="{{isset($vehiculo->noserie)?$vehiculo->noserie: old('noserie')}}" id="noserie" >
+    @error('noserie');
+    <small style ="color: red"> {{$message}}</small>
+    @enderror
+    <br>
+    </div>
+
+    <div class="form-group">
+    <label for="placa">Placa</label>
+    <input type="text" class="form-control" name="placa"
+    value="{{isset($vehiculo->placa)?$vehiculo->placa:old('placa')}}" id="placa">
+    @error('placa');
+    <small style ="color: red"> {{$message}}</small>
+    @enderror
+
+    <br>
+    </div>
+    <div class="form-group">
+    <label for="color">Color</label>
+    <input type="text" class="form-control" name="color"
+    value="{{isset($vehiculo->color)?$vehiculo->color:old('color')}}" id="color">
+    @error('color');
+    <small style ="color: red"> {{$message}}</small>
+    @enderror
+    <br>
+    </div>
+
+{{--
+        <div class="form-group">
+            <label for="cliente_id">Cliente</label>
+            <select class="form-control" name="cliente_id" >
+                @foreach ($clientes as $cliente)
+           <option value="{{isset($cliente->id)?$cliente->id:old('cliente_id')}}" id="cliente_id">{{ $cliente['nombre'] }} {{ $cliente['apellidopat'] }} {{ $cliente['apellidomat'] }} </option>
+           @endforeach
+                  </select>
+--}}
+
+    <div class="form-group">
+    <input class="btn btn-success" type="submit" class="form-control" value="{{$modo}} datos">
+    </div>
+
+    <br><br>
+
+    <div class="form-group">
+    <a href="{{url('/referencia')}}" class="btn btn-dark" >Regresar</a>
+    </div>
+    <br>
