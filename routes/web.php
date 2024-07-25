@@ -10,7 +10,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/cliente/{id}',                     [App\Http\Controllers\ClienteController::class, 'show'])->name('cliente.show');
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::resource('referencia',App\Http\Controllers\ReferenciaController::class);
@@ -27,6 +26,7 @@ Route::resource('sensor',App\Http\Controllers\SensorController::class);
 Route::get('/prueba/{id}/buscarCtaespejo',      [App\Http\Controllers\PruebaController::class, 'buscarCtaespejo']);
 Route::get('/prueba/{id}/buscarSensor',         [App\Http\Controllers\PruebaController::class, 'buscarSensor']);
 
+Route::get('/cliente/{id}',                     [App\Http\Controllers\ClienteController::class, 'show'])->name('cliente.show');
 
 Route::get('/referencia/crearref/{id}',     [App\Http\Controllers\ReferenciaController::class, 'crearref'])->name('referenciaf.crear');;
 Route::post('/referencia/{id}',             [App\Http\Controllers\ReferenciaController::class, 'storef'])->name('referenciap.crear');
