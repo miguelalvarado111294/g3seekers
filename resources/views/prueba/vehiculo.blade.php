@@ -45,7 +45,7 @@
           <td>{{$vehiculo->placa}} </td>
           <td> {{$vehiculo->placa}} </td>
           <td>{{$vehiculo->noserie}}</td>
-          <td> <a href="{{route('buscar.dispositivo' , $vehiculo->cliente_id)}}" class="btn btn-primary" >Dispositivo</a>
+          <td> <a href="{{route('buscar.dispositivo' , $vehiculo->id)}}" class="btn btn-primary" >Dispositivo</a>
           </td>
           <td>
 

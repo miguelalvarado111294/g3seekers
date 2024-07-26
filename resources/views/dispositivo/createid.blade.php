@@ -1,4 +1,3 @@
-hola putito {{$id}}
 
 @extends('layouts.app')
 @section('content')

@@ -45,8 +45,9 @@ public function buscarVehiculo ($id){
 
     public function buscarDispositivo($id){
 
-    $dispositivos=Dispositivo::where('cliente_id','LIKE','%' . $id . '%')->get();
-    $linea=Linea::where('cliente_id','LIKE','%'.$id.'%')->take(1);
+       // return $id;
+    $dispositivos=Dispositivo::where('vehiculo_id','LIKE','%' . $id . '%')->get();
+
 
     return view ('prueba.buscarDispositivo',compact('dispositivos','id'));
 

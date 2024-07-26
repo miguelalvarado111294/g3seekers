@@ -12,7 +12,7 @@
     </div>
         @endif
 
-        <a href="{{route('dispositivof.crear', $id)}}" class="btn btn-warning" >Asignar dispositivo</a>
+        <a href="{{route('dispositivof.crear' , $id)}}" class="btn btn-warning" >Asignar dispositivo</a>
 
 
 <br><br>

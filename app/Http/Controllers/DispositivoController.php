@@ -63,18 +63,14 @@ class DispositivoController extends Controller
     public function creardisp($id)
     {
 
-
+//return $id; //id vehiculo
         return view('dispositivo.createid', ['id'=>$id] );
 
     }
 
     public function stodis(Request $request ,$id){
 
-    $vehiculo=Vehiculo::where('cliente_id','LIKE', '%' . $id . '%')->first();
-    $vehiculoid=$vehiculo->id;
-
-
-
+    $vehiculo=Vehiculo::where('id','LIKE', '%' . $id . '%')->first();
     // return $linea;
     $dispositivo= new Dispositivo();
 
@@ -82,9 +78,8 @@ class DispositivoController extends Controller
     $dispositivo->noserie=$request->noserie;
     $dispositivo->imei=$request->imei;
     $dispositivo->comentarios=$request->comentarios;
-    $dispositivo->cliente_id=$id;
-    $dispositivo->vehiculo_id=$vehiculoid;
-
+    $dispositivo->cliente_id=$vehiculo->cliente_id;
+    $dispositivo->vehiculo_id=$vehiculo->id;
     //$dispositivo->sensor_id=$request->color;
     //$dispositivo->linea_id=$lineaid;
 
