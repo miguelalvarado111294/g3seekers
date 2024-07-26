@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('noserie');
             $table->string('tipo');
             $table->string('comentarios')->nullable();
+            $table->bigInteger('dispositivo_id')->unsigned();
+
+            $table->foreign('dispositivo_id')->references('id')->on('dispositivos')->onDelete('cascade')->onUpdate('cascade');
 
 
             $table->timestamps();

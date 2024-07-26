@@ -23,11 +23,8 @@ class referencia extends Model
     ];
 public function cliente(){
 
-
     return $this->belongsTo('App\Models\Cliente','cliente_id','id');
 
-}
-
-
+    }
 
 }

@@ -14,7 +14,7 @@ class SensorController extends Controller
      */
     public function index()
     {
-   
+
         $datos['sensors']=sensor::paginate(5);
         return view('sensor.index',$datos);
     }
@@ -24,12 +24,41 @@ class SensorController extends Controller
      */
     public function create()
     {
-        //     
-        
+        //
+
         $dispositivos=dispositivo::all();
         return view('sensor.create',compact('dispositivos'));
 
     }
+
+public function crearsens ($id){
+
+return view('sensor.createid',['id'=>$id]);
+}
+
+public function stosens (Request $request,$id){
+
+    $sensor = new Sensor;
+
+    $sensor->marca=$request->marca;
+    $sensor->modelo=$request->modelo;
+    $sensor->noserie=$request->noserie;
+    $sensor->tipo=$request->tipo;
+    $sensor->comentarios=$request->comentarios;
+    $sensor->dispositivo_id=$id;
+
+    $sensor->save();
+
+
+
+    return redirect()->route('buscar.sensor',$id);
+
+
+
+
+}
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -37,20 +66,20 @@ class SensorController extends Controller
     public function store(Request $request)
     {
         //
-        $campos= [ 
+        $campos= [
             'marca'=>'required|alpha|min:2|max:100',
             'modelo'=> 'required|nullable|alpha_dash',
             'noserie'=>'required|alpha_dash|min:2|max:100',
             'tipo'=>'required|alpha|min:2|max:100'
-           
+
            ];
-        
+
         $this->validate($request,$campos/*$mensaje*/);
         $datosSensor = request()->except('_token');
         sensor::insert($datosSensor);
 
         return redirect ('sensor')->with('mensaje','sensor agregado exitosamente ');
-    
+
     }
 
     /**
@@ -73,33 +102,33 @@ class SensorController extends Controller
 
     }
 
-    
+
     public function update(Request $request, $id)
     {
-        
-        $campos= [ 
+
+        $campos= [
             'marca'=>'required|alpha|min:2|max:100',
             'modelo'=> 'required|nullable|alpha_dash',
             'noserie'=>'required|alpha_dash|min:2|max:100',
             'tipo'=>'required|alpha|min:2|max:100'
-           
+
            ];
-   
+
      $this->validate($request,$campos/*$mensaje*/);
      $datosSensor = request()->except(['_token', '_method']);
-    
+
      sensor::where('id','=',$id)->update($datosSensor);
      $sensor=sensor::findOrFail($id);
         return redirect ('sensor')->with('mensaje','sensor editado exitosamente ');
-     
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy($id)
-    {     
+    {
         sensor::destroy($id);
-        return redirect ('sensor')->with('mensaje','sensor eliminado exitosamente ');
+        return redirect()->route('buscar.sensor',$id);
     }
 }

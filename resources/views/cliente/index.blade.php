@@ -37,6 +37,7 @@
            <a href=" {{route('cliente.show' , $cliente->id)}}" style="text-align: center; display: inline-block; width: 100%; ">
                  {{--$cliente->dispositivos --}} {{$cliente->nombre}} {{$cliente->segnombre}} {{$cliente->apellidopat}} {{$cliente->apellidomat}}
             </a>
+
            @endforeach
     {!! $clientes->links()!!}
 </ul>

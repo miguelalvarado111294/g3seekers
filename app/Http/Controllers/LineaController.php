@@ -39,8 +39,11 @@ class LineaController extends Controller
 
         return view('linea.createid', ['id'=>$id] );
 
-
     }
+
+
+
+
 
 
     public function store(Request $request)
@@ -76,6 +79,8 @@ class LineaController extends Controller
 
         */
 
+        $dispositivo=Dispositivo::where('cliente_id','LIKE', '%' . $id . '%')->first();
+
 $linea= new Linea;
 $linea->simcard=$request->simcard;
 $linea->telefono=$request->telefono;
@@ -83,7 +88,11 @@ $linea->tipolinea=$request->tipolinea;
 $linea->renovacion=$request->renovacion;
 $linea->comentarios=$request->comentarios;
 $linea->cliente_id=$id;
+$linea->dispositivo_id=$dispositivo->id;
+
+//return $linea;
 $linea->save();
+
 return redirect()->route('buscar.linea',$id);
 
 

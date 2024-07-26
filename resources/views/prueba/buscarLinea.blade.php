@@ -40,11 +40,7 @@
                 <td>{{$linea->simcard}}</td>
                 <td>{{$linea->tipolinea}}</td>
                 <td>{{$linea->renovacion }} </td>
-<td>
-    <a href="{{route('buscar.dispositivo' , $id)}}" class="btn btn-warning" >Dispositivo</a>
 
-
-</td>
             <td>
                 <a href="{{url('/linea/' . $linea->id . '/edit')}}" class="btn btn-warning" >Editar</a>
 

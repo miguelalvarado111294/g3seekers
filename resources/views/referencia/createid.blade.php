@@ -2,6 +2,7 @@
 @section('content')
 <div class="container">
 
+    <h1>Agregar Referencia</h1>
 <form action=" {{route('referenciap.crear', $id)}} " method="post">
 @csrf
 

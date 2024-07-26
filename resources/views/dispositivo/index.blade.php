@@ -21,7 +21,7 @@
         <tr>
            <th>id</th>
            <th>cliente</th>
-            <th>modelo</th> 
+            <th>modelo</th>
             <th>noserie</th>
             <th>imei</th>
             <th>Acciones</th>
@@ -29,12 +29,12 @@
     </thead>
 
     <tbody>
-        @foreach ($dispositivos as $dispositivo)  
-        
+        @foreach ($dispositivos as $dispositivo)
+
         <tr>
-           <td>{{$dispositivo->id}}</td>
+           <td>{{$dispositivo->id}} {{$dispositivo->cliente->apellidomat}} </td>
            <td> {{$dispositivo->cliente->nombre}}  {{$dispositivo->cliente->segnombre}}  {{$dispositivo->cliente->apellidopat}}  {{$dispositivo->cliente->apellidomat}}  </td>
-            <td>{{$dispositivo->modelo}}</td>  
+            <td>{{$dispositivo->modelo}}</td>
             <td>{{$dispositivo->noserie}}</td>
             <td>{{$dispositivo->imei}}</td>
 
@@ -44,7 +44,7 @@
                     <form action="{{url('/dispositivo/' .  $dispositivo->id)}}" method="post" class="d-inline">
                     @csrf
                     {{ method_field('DELETE') }}
-                    <input class="btn btn-danger" type="submit" onclick=" return confirm('seguro quieres eliminar?')" 
+                    <input class="btn btn-danger" type="submit" onclick=" return confirm('seguro quieres eliminar?')"
                     value="Borrar">
                     </form>
             </td>

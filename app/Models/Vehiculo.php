@@ -26,9 +26,7 @@ class vehiculo extends Model
     public function cliente(){
         return $this->belongsTo('App\Models\Cliente','cliente_id','id');
  }
-
-    public function dispositivo(){
-        return $this->belongsTo(dispositivo::class,'dispositivo_id','id');
-    }
-
+ public function dispositivo(){
+    return $this->belongsTo('App\Models\Dispositivo','dispositivo_id','id');
+}
 }

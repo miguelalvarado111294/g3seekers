@@ -15,7 +15,8 @@ class sensor extends Model
         'modelo',
         'noserie',
         'tipo',
-        'comentarios'
+        'comentarios',
+        'dispositivo_id'
 
     ];
 
@@ -23,7 +24,7 @@ class sensor extends Model
 
 public function dispositivo(){
 
-    return $this->hasMany(dispositivo::class,'dispositivo_id','id');
+    return $this->hasOne(Dispositivo::class,'dispositivo_id','id');
 
 }
 

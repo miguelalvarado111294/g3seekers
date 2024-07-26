@@ -27,22 +27,21 @@ class cliente extends Model
         'comentarios'
 
     ];
-
     public function referencias (){
         return $this->hasMany('App\Models\Referencia','cliente_id','id');
     }
 
     public function vehiculos (){
-        return $this->hasMany('App\Models\Vehiculos','cliente_id','id');
+        return $this->hasMany('App\Models\Vehiculo','cliente_id','id');
     }
 
-    public function dispositivos (){
+    public function dispositivos(){
         return $this->hasMany('App\Models\Dispositivo','cliente_id','id');
     }
 
-    public function cuentas (){
-        //return $this->hasMany('App\Models\Cuenta','cliente_id','id');
-        return $this->hasMany('App\Models\Cuenta');
+    public function cuenta(){
+        return $this->hasOne('App\Models\Cuenta','cliente_id','id');
+
 
     }
     public function lineas (){

@@ -14,6 +14,7 @@
     @endif
 
 
+
 <a href="{{route('vehiculof.crear' ,  $id)}}" class="btn btn-success" >Registrar nuevo vehiculo</a>
 
 <br><br>
@@ -21,13 +22,15 @@
 <table class="table table-light">
     <thead class="thead-light">
         <tr>
+            <th>Id del dispositivo</th>
             <th>Marca</th>
             <th>Modelo</th>
             <th>Color</th>
             <th>Placa</th>
+            <th>Tipo de Unidad</th>
             <th>Numero de Serie</th>
-            <th></th>
             <th>Acciones</th>
+            <th></th>
 
          </tr>
     </thead>
@@ -35,22 +38,17 @@
     <tbody>
         @foreach ($vehiculos as $vehiculo)
         <tr>
-            <td>
-
-
-
-            </td>
+          <td>id  </td>
           <td>{{$vehiculo->marca}} </td>
           <td>{{$vehiculo->modelo}}</td>
           <td>{{$vehiculo->color}} </td>
           <td>{{$vehiculo->placa}} </td>
+          <td> {{$vehiculo->placa}} </td>
           <td>{{$vehiculo->noserie}}</td>
-          <td>
-            <a href="{{route('buscar.linea' , $vehiculo->cliente_id)}}" class="btn btn-warning" >Linea</a>
-
+          <td> <a href="{{route('buscar.dispositivo' , $vehiculo->cliente_id)}}" class="btn btn-primary" >Dispositivo</a>
           </td>
-
           <td>
+
             <a href="{{url('/vehiculo/' . $vehiculo->id . '/edit')}}" class="btn btn-warning" >Editar</a>
 
             <form action="{{url('/vehiculo/' .  $vehiculo->id)}}" method="post" class="d-inline">
@@ -59,6 +57,10 @@
                 <input class="btn btn-danger" type="submit" onclick=" return confirm('seguro quieres eliminar?')"
                 value="Borrar">
             </form>
+
+          </td>
+
+          <td>
 
 
     </td>

@@ -90,7 +90,7 @@ class ClienteController extends Controller
     {
         //
     $cliente=cliente::findOrFail($id);
-    $referencias=referencia::where('cliente_id','LIKE','%' . $id . '%')->get();
+    $referencias=Referencia::where('cliente_id','LIKE','%' . $id . '%')->get();
 
 
     $data=[

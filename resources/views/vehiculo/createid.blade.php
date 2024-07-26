@@ -4,9 +4,12 @@
 <div class="container">
 
 
+
 <form action="{{route('vehiculop.crear', $id)}}" method="post">
 @csrf
 <div class="form-group">
+
+
 <label>Marca:</label>
 <input type="text" class="form-control" name="marca">
 </div>

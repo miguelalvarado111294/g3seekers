@@ -70,9 +70,12 @@ class DispositivoController extends Controller
 
     public function stodis(Request $request ,$id){
 
-        $linea=Linea::where('cliente_id','LIKE', '%' . $id . '%')->first();
-//        $lineaid=$linea->id;
-       // return $linea;
+    $vehiculo=Vehiculo::where('cliente_id','LIKE', '%' . $id . '%')->first();
+    $vehiculoid=$vehiculo->id;
+
+
+
+    // return $linea;
     $dispositivo= new Dispositivo();
 
     $dispositivo->modelo=$request->modelo;
@@ -80,9 +83,10 @@ class DispositivoController extends Controller
     $dispositivo->imei=$request->imei;
     $dispositivo->comentarios=$request->comentarios;
     $dispositivo->cliente_id=$id;
+    $dispositivo->vehiculo_id=$vehiculoid;
 
-  //  $dispositivo->sensor_id=$request->color;
-  //  $dispositivo->linea_id=$lineaid;
+    //$dispositivo->sensor_id=$request->color;
+    //$dispositivo->linea_id=$lineaid;
 
     $dispositivo->save();
 

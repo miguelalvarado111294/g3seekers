@@ -22,15 +22,24 @@ class dispositivo extends Model
 
     ];
 public function cliente(){
-    return $this->belongsTo(Cliente::class,'cliente_id','id');
+    return $this->belongsTo('App\Models\Cliente','cliente_id','id');
 }
 
+
 public function lineas(){
-    return $this->belongsTo(Cliente::class,'cliente_id','id');
+    return $this->belongsTo('App\Models\Linea','linea_id','id');
+}
+/*
+public function sensors(){
+    return $this->belongsTo(Sensor::class,'dispositivo_id','id');
+}*/
+
+public function vehiculo(){
+    return $this->hasOne('App\Models\Vehiculo','vehiculo_id','id');
 }
 
 public function sensors(){
-    return $this->belongsTo(Sensor::class,'dispositivo_id','id');
+    return $this->hasMany('App\Models\Sensor');
 }
 
 }

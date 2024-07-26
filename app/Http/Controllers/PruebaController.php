@@ -17,6 +17,7 @@ use App\Models\vehiculo;
 use App\Models\referencia;
 use App\Models\linea;
 use App\Models\sensor;
+use Illuminate\Validation\Rules\Exists;
 
 class PruebaController extends Controller
 {
@@ -35,6 +36,8 @@ public function buscarVehiculo ($id){
 
     $cliente=   Cliente::findOrFail($id);
     $vehiculos= Vehiculo::where('cliente_id','LIKE','%' . $id . '%')->get();
+    $dispositivo=Dispositivo::where('cliente_id','LIKE','%' . $id . '%')->first();
+//    $dispositivo_id=$dispositivo->id;
     return view('prueba.vehiculo',compact('vehiculos','id'));
 
     }
@@ -70,17 +73,16 @@ public function buscarVehiculo ($id){
 
 
      public function buscarSensor($id){
-        echo $id;
 
-        $sensors=sensor::where('dispositivo_id' , 'LIKE' , '%' . $id . '%')->get();
-
-        return view ('prueba.buscarSensor',compact('sensors'));
+        $sensors=Sensor::where('dispositivo_id' , 'LIKE' , '%' . $id . '%')->get();
+/*
+if(!empty($sensors)){
+    return redirect()->route('sensorf.crear', $id);
+}else
+  */
+    return view('prueba.buscarSensor',compact('sensors','id'));
 
      }
-
-
-
-
 
 
  }

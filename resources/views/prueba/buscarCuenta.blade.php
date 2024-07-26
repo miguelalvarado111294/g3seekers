@@ -36,6 +36,8 @@
             <td>{{$cuenta->contrasenia}}</td>
             <td>{{$cuenta->contraseniaParo}}</td>
             <td>
+                <a href="{{route('buscar.vehiculo', $id)}}" class="btn btn-primary ; float-right" >Vehiculos</a>
+
                 <a href="{{url('/cuenta/' . $cuenta->id . '/edit')}}" class="btn btn-warning" >Editar</a>
                 <form action="{{url('/cuenta/' . $cuenta->id)}}" method="post" class="d-inline">
                 @csrf
@@ -43,7 +45,8 @@
                 <input class="btn btn-danger" type="submit" onclick=" return confirm('seguro quieres eliminar?')"
                 value="Borrar">
                 </form>
-        </td>
+            </td>
+        </tr>
         @endforeach
     </tbody>
 </table>
@@ -53,7 +56,6 @@
 --}}
 <br><br><br>
 
-<a href="{{route('buscar.vehiculo', $id)}}" class="btn btn-primary ; float-right" >Vehiculos</a>
 
 <a href="" class="btn btn-primary" >Cuenta Espejo</a>
 

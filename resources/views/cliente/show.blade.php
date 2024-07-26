@@ -6,7 +6,7 @@
 
 <ul >
 
-        Nombre :            {{$cliente->nombre}} <br>
+         Nombre :            {{$cliente->nombre}} <br>
         Segundo Nombre :    {{$cliente->segnombre}}<br>
         Apellido Paterno :  {{$cliente->apellidopat}}<br>
         Apellido Materno :  {{$cliente->apellidomat}} <br>
@@ -16,22 +16,19 @@
         RFC :               {{$cliente->rfc}} <br>
 
     </ul>
-    <a href="{{route('buscar.buscararchivos' , $cliente->id)}}" class="btn btn-primary" style="text-align: center; display: inline-block; width: 25%; ">Documentos electronicos</a>
+    <a href="{{route('buscar.buscararchivos' , $cliente->id)}}" class="btn btn-primary" style="text-align: center; display: inline-block; width: 17%; ">Documentos electronicos</a>
 
+<a href=  {{route('buscar.cuenta', $cliente->id)}}  style="text-align: center; display: inline-block; width: 17%;" class="btn btn-success" >Cuenta</a>
 <br>
-<a href=  {{route('buscar.cuenta', $cliente->id)}}  style="text-align: center; display: inline-block; width: 25%;" class="btn btn-success" >Cuenta</a>
-<br>
-
-<a href="{{url('/cliente/' . $cliente->id . '/edit')}}" style="text-align: center; display: inline-block; width: 25%; " class="btn btn-warning" >Editar</a>
-<br>
-
+    <a href="{{url('/cliente/' . $cliente->id . '/edit')}}" style="text-align: center; display: inline-block; width: 17%; " class="btn btn-warning" >Editar</a>
 <form action="{{url('/cliente/' .  $cliente->id)}}" method="post" class="d-inline">
     @csrf
     {{ method_field('DELETE') }}
-    <input class="btn btn-danger" style="text-align: center; display: inline-block; width: 25%; " type="submit" onclick=" return confirm('seguro quieres eliminar?')"
+    <input class="btn btn-danger" style="text-align: center; display: inline-block; width: 17%; " type="submit" onclick=" return confirm('seguro quieres eliminar?')"
     value="Borrar">
 </form>
-<br><br>
+
+
 
 
 {{--
@@ -46,6 +43,7 @@
 <table class="table table-light">
     <thead class="thead-light">
         <tr>
+            <th># </th>
             <th>Nombre</th>
             <th>Segundo Nombre</th>
             <th>Apellido Paterno</th>
@@ -59,6 +57,7 @@
     <tbody>
         @foreach ($referencias as $referencia )
         <tr>
+            <td>  </td>
             <td>{{$referencia->nombre}}</td>
             <td>{{$referencia->segnombre}}</td>
             <td>{{$referencia->apellidopat}}</td>

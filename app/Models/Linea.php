@@ -25,9 +25,9 @@ class linea extends Model
         return $this->belongsTo(Cliente::class,'cliente_id','id');
 
     }
-    public function dispositivos (){
+    public function dispositivo (){
 
-        return $this->hasMany('App\Models\Linea','dispositivo_id','id');
+        return $this->hasOne('App\Models\Dispositivo','dispositivo_id','id');
     }
 
 

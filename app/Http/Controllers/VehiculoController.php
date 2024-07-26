@@ -11,27 +11,18 @@ use App\Models\dispositivo;
 
 class VehiculoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
         $datos['vehiculos']=Vehiculo::paginate(7);
         return view('vehiculo.index',$datos);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
         $clientes=Cliente::all();
         $dispositivo=dispositivo::all();
         $cuentas=cuenta::all();
-
-
         return view('vehiculo.create',compact('clientes','tipounidad','cuentas','dispositivo'));
     }
 
@@ -40,34 +31,29 @@ class VehiculoController extends Controller
     {
         $cuentas=cuenta::all();
         return view('vehiculo.createid',compact('id','cuentas'));
-
     }
 
     public function stovehi(Request $request ,$id){
 
-        $cuenta=Cuenta::where('cliente_id','LIKE', '%' . $id . '%')->first();
-
     $vehiculo= new vehiculo();
-
     $vehiculo->marca=$request->marca;
     $vehiculo->modelo=$request->modelo;
     $vehiculo->noserie=$request->noserie;
     $vehiculo->placa=$request->placa;
     $vehiculo->color=$request->color;
     $vehiculo->comentarios=$request->comentarios;
+    $vehiculo->tipo=$request->tipo;
+
     $vehiculo->cliente_id=$id;
-    $vehiculo->cuenta_id=$cuenta->id;
 
     $vehiculo->save();
 
-
-return redirect()->route('buscar.vehiculo',$id);
-
+    return redirect()->route('buscar.vehiculo',$id);
 }
 
     public function store(Request $request)
     {
-        //
+
         $campos= [
             'marca'=>'required|alpha_dash|min:2|max:100',
             'modelo'=> 'alpha_num',
@@ -76,44 +62,24 @@ return redirect()->route('buscar.vehiculo',$id);
             'color'=>'required|string|max:10'
         ];
 
-
-       $this->validate($request,$campos/*$mensaje*/);
+        $this->validate($request,$campos/*$mensaje*/);
         $datosVehiculo = $request->except('_token');
         Vehiculo::insert($datosVehiculo);
-
-         //return response()->json($datosVehiculo);
-       return redirect ('vehiculo')->with('mensaje','vehiculo agregado exitosamente ');
+        return redirect ('vehiculo')->with('mensaje','vehiculo agregado exitosamente ');
 
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(vehiculo $vehiculo)
+     public function edit($id)
     {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        //
         $clientes=Cliente::all();
-
         $vehiculo=Vehiculo::findOrfail($id);
-
         return view('vehiculo.edit', compact('vehiculo'));
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request,$id)
     {
-        //
 
         $campos= [
             'marca'=>'required|alpha_dash|min:2|max:100',
@@ -124,19 +90,14 @@ return redirect()->route('buscar.vehiculo',$id);
 
            ];
 
-     $this->validate($request,$campos/*$mensaje*/);
-     $datosVehiculo = $request->except(['_token', '_method']);
-     Vehiculo::where('id','=',$id)->update($datosVehiculo);
-     $vehiculo=Vehiculo::findOrFail($id);
-     //return response()->json($datosVehiculo);
-        //return redirect ('vehiculo')->with('mensaje','Registro editado exitosamente ');
-return redirect()->route('buscar.vehiculo', $vehiculo->cliente_id);
+    $this->validate($request,$campos/*$mensaje*/);
+    $datosVehiculo = $request->except(['_token', '_method']);
+    Vehiculo::where('id','=',$id)->update($datosVehiculo);
+    $vehiculo=Vehiculo::findOrFail($id);
+    return redirect()->route('buscar.vehiculo', $vehiculo->cliente_id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
+     public function destroy($id)
     {
         //
         $vehiculo=Vehiculo::findOrFail($id);
