@@ -57,7 +57,7 @@
 <br><br><br>
 
 
-<a href="" class="btn btn-primary" >Cuenta Espejo</a>
+<a href="{{route('buscar.ctaespejo', $id)}}" class="btn btn-primary" >Cuenta Espejo</a>
 
 @endsection
 </div>

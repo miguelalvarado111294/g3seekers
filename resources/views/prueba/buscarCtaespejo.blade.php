@@ -25,40 +25,32 @@
     <thead class="thead-light">
         <tr>
             <td>id</td>
-            <th>Cliente</th>
             <th>Usuario</th>
             <th>Contraseña</th>
             <th>¬¬</th>
             <th>Acciones</th>
          </tr>
     </thead>
+@foreach ($ctaespejos as $ctaespejo)
+
 
     <tbody>
         <tr>
-            <td>{{$ctaespejos->id}}</td>
-            <td>{{$ctaespejos->cliente->nombre}} {{$ctaespejos->cliente->apellidopat}}</td>
-            <td>{{$ctaespejos->usuario}}</td>
-            <td>{{$ctaespejos->contrasenia}}</td>
+            <td>{{$ctaespejo->id}}</td>
+            <td>{{$ctaespejo->usuario}}</td>
+            <td>{{$ctaespejo->contrasenia}}</td>
 
             <td>
-
-                <form action="{{url('/prueba/' .  $ctaespejos->id . '/buscarCtasecundaria') }}"  method="get" class="d-inline">
-                    @csrf
-                    <input class="btn btn-primary" type="submit" value="Cuentas Secundariaas" >
-                </form>
-
-            </td>
-
-            <td>
-                <a href="{{url('/cuenta/' . $ctaespejos->cliente->id . '/edit')}}" class="btn btn-warning" >Editar</a>
+                <a href="{{url('/cuenta/' . $ctaespejo->id . '/edit')}}" class="btn btn-warning" >Editar</a>
                 -
-                <form action="{{url('/cuenta/' .  $ctaespejos->cliente->id)}}" method="post" class="d-inline">
+                <form action="{{url('/cuenta/' .  $ctaespejo->id)}}" method="post" class="d-inline">
                 @csrf
                 {{ method_field('DELETE') }}
                 <input class="btn btn-danger" type="submit" onclick=" return confirm('seguro quieres eliminar?')"
                 value="Borrar">
                 </form>
         </td>
+        @endforeach
     </tbody>
 </table>
 

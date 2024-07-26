@@ -24,7 +24,8 @@ Route::resource('order',App\Http\Controllers\OrderController::class);
 Route::resource('sensor',App\Http\Controllers\SensorController::class);
 
 
-Route::get('/cliente/{id}',                     [App\Http\Controllers\ClienteController::class, 'show'])->name('cliente.show');
+Route::get('/cliente/{id}',                 [App\Http\Controllers\ClienteController::class, 'show'])->name('cliente.show');
+Route::get('cliente/{id}/buscararchivos',   [App\Http\Controllers\ClienteController::class, 'buscararchivos'])->name('buscar.buscararchivos');
 
 Route::get('/referencia/crearref/{id}',     [App\Http\Controllers\ReferenciaController::class, 'crearref'])->name('referenciaf.crear');;
 Route::post('/referencia/{id}',             [App\Http\Controllers\ReferenciaController::class, 'storef'])->name('referenciap.crear');
@@ -36,7 +37,7 @@ Route::post('/vehiculo/{id}',               [App\Http\Controllers\VehiculoContro
 Route::get('/prueba/{id}/buscarCuenta',     [App\Http\Controllers\PruebaController::class, 'buscarCuenta'])->name('buscar.cuenta');
 Route::get('/cuenta/crearcta/{id}',         [App\Http\Controllers\CuentaController::class, 'crearcta'])->name('cuentaf.crear');
 Route::post('/cuenta/{id}',                 [App\Http\Controllers\CuentaController::class, 'stocta'])->name('cuentap.crear');
-Route::get('cliente/{id}/buscararchivos',   [App\Http\Controllers\ClienteController::class, 'buscararchivos'])->name('buscar.buscararchivos');
+
 Route::get('/prueba/{id}/buscarLinea',      [App\Http\Controllers\PruebaController::class, 'buscarLinea'])->name('buscar.linea');
 Route::get('/linea/crearlinea/{id}',        [App\Http\Controllers\LineaController::class, 'crearlinea'])->name('lineaf.crear');
 Route::post('/linea/{id}',                  [App\Http\Controllers\LineaController::class, 'storep'])->name('lineap.crear');
@@ -48,3 +49,5 @@ Route::post('/dispositivo/{id}',            [App\Http\Controllers\DispositivoCon
 Route::get('/prueba/{id}/buscarSensor',     [App\Http\Controllers\PruebaController::class, 'buscarSensor'])->name('buscar.sensor');
 Route::get('/sensor/crearsens/{id}',   [App\Http\Controllers\SensorController::class, 'crearsens'])->name('sensorf.crear');;
 Route::post('/sensor/{id}',            [App\Http\Controllers\SensorController::class, 'stosens'])->name('sensorp.crear');
+
+Route::get('/prueba/{id}/buscarctaespejo',     [App\Http\Controllers\PruebaController::class, 'buscarCtaespejo'])->name('buscar.ctaespejo');

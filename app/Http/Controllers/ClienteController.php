@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Http\Requests\storecliente;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -27,8 +27,6 @@ class ClienteController extends Controller
         ->orWhere('telefono' , 'LIKE' , '%' . $busqueda . '%')
         ->paginate(10);
 */
-//        $dispositivo=Dispositivo::where('cliente_id' , 'LIKE' , '%' . $id . '%');
-
         $clientes=Cliente::latest('id')->paginate(10);
         return view('cliente.index',compact('clientes'));
 
@@ -39,26 +37,9 @@ class ClienteController extends Controller
         return view('cliente.create');
     }
 
-    public function store(Request $request)
+    public function store(storecliente $request)
     {
-        $campos= [
-            'nombre'=>'required|alpha|min:2|max:100',
-            'segnombre'=> 'nullable|alpha',
-            'apellidopat'=>'required|alpha|min:2|max:100',
-            'apellidomat'=>'required|alpha|min:2|max:100',
-            'telefono'=>'required|numeric|digits:10',
-            'direccion'=>'required',
-            'email'=>'required|string|min:2|max:100|email',
-            'rfc'=>'required|alpha_num|min:2|max:100',
-            'actaconstitutiva'=>'mimes:pdf,jpeg,png,jpg|max:5000',
-            'consFiscal'=>'mimes:pdf,jpeg,png,jpg|max:5000',
-            'comprDom'=>'mimes:pdf,jpeg,png,jpg|max:5000',
-            'tarjetacirculacion'=>'mimes:pdf,jpeg,png,jpg,pdf|max:5000',
-            'compPago'=>'mimes:pdf,jpeg,png,jpg|max:5000'
 
-           ];
-
-            $this->validate($request,$campos/*$mensaje*/);
             $datosCliente = $request->except('_token');
 
             if($request->hasFile('actaconstitutiva')) {
@@ -135,10 +116,10 @@ public function edit($id)
             'segnombre'=> 'nullable|alpha',
             'apellidopat'=>'required|alpha|min:2|max:100',
             'apellidomat'=>'required|alpha|min:2|max:100',
-            'telefono'=>'required|numeric|digits:10',
+            'telefono'=>'required|numeric|digits:10|unique:clientes,telefono,'. $id,
             'direccion'=>'required',
-            'email'=>'required|string|min:2|max:100|email',
-            'rfc'=>'required|alpha_num|min:2|max:100',
+            'email'=>'required|string|min:2|max:100|email|unique:clientes,email,'.$id,
+            'rfc'=>'required|alpha_num|min:2|max:100|unique:clientes,rfc,'.$id,
             'actaconstitutiva'=>'mimes:pdf,jpeg,png,jpg|max:5000',
             'consFiscal'=>'mimes:pdf,jpeg,png,jpg|max:5000',
             'comprDom'=>'mimes:pdf,jpeg,png,jpg|max:5000',

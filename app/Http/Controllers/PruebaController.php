@@ -53,15 +53,6 @@ public function buscarVehiculo ($id){
 
     }
 
-    public function buscarCtaespejo($id){
-
-        $ctaespejos=ctaespejo::findOrFail($id)->where('cuenta_id','LIKE','%' . $id . '%')
-        ->first();
-
-        return view('prueba.buscarctaespejo', compact('ctaespejos'));
-
-        }
-
 
      public function buscarLinea($id){
 
@@ -85,8 +76,21 @@ if(!empty($sensors)){
 
      }
 
+     public function buscarCtaespejo($id){
+
+        $cuentas=Cuenta::where('cliente_id','LIKE','%' . $id . '%')->first();
+
+        $ctaespejos=Ctaespejo::where('cuenta_id','LIKE','%' . $cuentas->id . '%')->get();
+
+        return view('prueba.buscarctaespejo', compact('ctaespejos'));
+
+        }
+
 
  }
+
+
+
 
 
 
