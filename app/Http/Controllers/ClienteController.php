@@ -2,31 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
+use App\Models\Referencia;
 use App\Http\Requests\storecliente;
-use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Validator;
-
-use App\Models\dispositivo;
-
-use App\Models\cliente;
-use App\Models\referencia;
-use GuzzleHttp\Psr7\Request as Psr7Request;
-use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
 
 class ClienteController extends Controller
 {
 
     public function index(Request $request)
     {
-/*
-        $busqueda= $request->busqueda;
-        $clientes['clientes']=cliente::where('rfc' , 'LIKE' , '%' . $busqueda . '%')
-        ->orWhere('apellidopat' , 'LIKE' , '%' . $busqueda . '%')
-        ->orWhere('telefono' , 'LIKE' , '%' . $busqueda . '%')
-        ->paginate(10);
-*/
+
         $clientes=Cliente::latest('id')->paginate(10);
         return view('cliente.index',compact('clientes'));
 
@@ -39,40 +26,34 @@ class ClienteController extends Controller
 
     public function store(storecliente $request)
     {
+    /*$request->validate([]);*/
 
             $datosCliente = $request->except('_token');
 
+
             if($request->hasFile('actaconstitutiva')) {
             $datosCliente['actaconstitutiva']=$request->file('actaconstitutiva')->store('uploads','public');
-            }
-
-            if($request->hasFile('consFiscal')){
+            }elseif($request->hasFile('consFiscal')){
             $datosCliente['consFiscal']=$request->file('consFiscal')->store('uploads','public');
-            }
-
-            if($request->hasFile('comprDom')){
+            }elseif($request->hasFile('comprDom')){
             $datosCliente['comprDom']=$request->file('comprDom')->store('uploads','public');
-            }
-
-            if($request->hasFile('tarjetacirculacion')){
+            }elseif($request->hasFile('tarjetacirculacion')){
             $datosCliente['tarjetacirculacion']=$request->file('tarjetacirculacion')->store('uploads','public');
-            }
-
-            if($request->hasFile('compPago')){
+            }elseif($request->hasFile('compPago')){
             $datosCliente['compPago']=$request->file('compPago')->store('uploads','public');
             }
 
             Cliente::insert($datosCliente);
+
             return redirect()->route('cliente.index');
     }
 
 
-    public function show( $id)
+    public function show($id)
     {
-        //
+
     $cliente=cliente::findOrFail($id);
     $referencias=Referencia::where('cliente_id','LIKE','%' . $id . '%')->get();
-
 
     $data=[
     'cliente' =>$cliente,
@@ -85,16 +66,14 @@ class ClienteController extends Controller
 
     public function clienteshow( $id)
     {
-        //
-        echo $id;
-    $cliente=cliente::findOrFail($id);
-    $referencias=referencia::where('cliente_id','LIKE','%' . $id . '%')
-->get();
 
-$data=[
+    $cliente=cliente::findOrFail($id);
+    $referencias=referencia::where('cliente_id','LIKE','%' . $id . '%')->get();
+
+    $data=[
     'cliente' =>$cliente,
     'referencias' => $referencias
-];
+    ];
 
        return view('cliente.show')->with($data);
 
@@ -197,3 +176,10 @@ public function buscararchivos($id){
 
 
 }
+/*
+        $busqueda= $request->busqueda;
+        $clientes['clientes']=cliente::where('rfc' , 'LIKE' , '%' . $busqueda . '%')
+        ->orWhere('apellidopat' , 'LIKE' , '%' . $busqueda . '%')
+        ->orWhere('telefono' , 'LIKE' , '%' . $busqueda . '%')
+        ->paginate(10);
+*/
