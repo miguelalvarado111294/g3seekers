@@ -36,8 +36,7 @@ class LineaController extends Controller
     public function crearlinea($id)
     {
 
-
-        return view('linea.createid', ['id'=>$id] );
+        return view('ctaespejo.createid', ['id'=>$id] );
 
     }
 

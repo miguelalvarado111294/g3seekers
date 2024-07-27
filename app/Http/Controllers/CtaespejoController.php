@@ -14,7 +14,7 @@ class CtaespejoController extends Controller
      */
     public function index()
     {
-   
+
         $datos['ctaespejos']=Ctaespejo::paginate(7);
         return view('ctaespejo.index',$datos);
     }
@@ -24,16 +24,36 @@ class CtaespejoController extends Controller
      */
     public function create()
     {
-        //     
+        //
         $cuentas=cuenta::all();
         $clientes=cliente::all();
 
-        
-        return view('ctaespejo.create',compact('cuentas','clientes'));
 
-        
+        return view('ctaespejo.create',compact('cuentas','clientes'));
+    }
+
+    public function crearctaespejo($id){
+
+
+        return view('ctaespejo.createid',['id'=>$id]);
 
     }
+
+    public function storectaespejo (Request $request,$id){
+
+        $ctaespejo=Ctaespejo::create([
+            'usuario'=>$request->usuario,
+            'contrasenia'=>$request->contrasenia,
+            'comentarios'=>$request->comentarios,
+            'cuenta_id'=>$id
+        ]);
+
+
+        return redirect()->route('buscar.ctaespejo', $ctaespejo->cuenta_id);
+
+
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -41,18 +61,18 @@ class CtaespejoController extends Controller
     public function store(Request $request)
     {
         //
-        $campos= [ 
+        $campos= [
             'usuario'=>'required|alpha_dash|min:2|max:100',
             'contrasenia'=>'required|alpha_dash|min:2|max:100'
-           
+
            ];
-        
+
          $this->validate($request,$campos/*$mensaje*/);
         $datosctaespejo = request()->except('_token');
         ctaespejo::insert($datosctaespejo);
 
         return redirect ('ctaespejo')->with('mensaje','cuenta agregada exitosamente ');
-    
+
     }
 
     /**
@@ -69,7 +89,7 @@ class CtaespejoController extends Controller
     public function edit( $id)
     {
         //
-   
+
 
 
         $cuentas=cuenta::all();
@@ -79,30 +99,30 @@ class CtaespejoController extends Controller
 
     }
 
-    
+
     public function update(Request $request, $id)
     {
-        
-        $campos= [ 
+
+        $campos= [
             'usuario'=>'required|alpha_dash|min:2|max:100',
             'contrasenia'=>'required|alpha_dash|min:2|max:100'
-           
+
            ];
-        
+
         $this->validate($request,$campos/*$mensaje*/);
         $datosctaespejo = request()->except(['_token', '_method']);
-    
+
      ctaespejo::where('id','=',$id)->update($datosctaespejo);
      $ctaespejo=ctaespejo::findOrFail($id);
         return redirect ('ctaespejo')->with('mensaje','Cuenta editada exitosamente ');
-     
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy($id)
-    {     
+    {
         ctaespejo::destroy($id);
         return redirect ('ctaespejo')->with('mensaje','cuenta eliminada exitosamente ');
     }

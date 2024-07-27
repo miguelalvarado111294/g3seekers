@@ -51,3 +51,6 @@ Route::get('/sensor/crearsens/{id}',   [App\Http\Controllers\SensorController::c
 Route::post('/sensor/{id}',            [App\Http\Controllers\SensorController::class, 'stosens'])->name('sensorp.crear');
 
 Route::get('/prueba/{id}/buscarctaespejo',     [App\Http\Controllers\PruebaController::class, 'buscarCtaespejo'])->name('buscar.ctaespejo');
+Route::get('/ctaespejo/crearctaespejo/{id}',   [App\Http\Controllers\CtaespejoController::class, 'crearctaespejo'])->name('ctaesoejof.crear');;
+Route::post('/ctaespejo/{id}',            [App\Http\Controllers\CtaespejoController::class, 'storectaespejo'])->name('ctaespejop.crear');
+

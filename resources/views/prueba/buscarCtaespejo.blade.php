@@ -14,11 +14,8 @@
     @endif
 
 <br>
-<br>
-<br>
-<a href="{{url('cuenta/create')}}" class="btn btn-success" >Registrar nueva cuenta</a>
-
-<br>
+<a href="{{route('ctaesoejof.crear' , $idcuenta)}}" class="btn btn-success" >Registrar nueva cuenta</a>
+<br><br>
             <h1>Cuenta Espejo de Socio</h1>
 
 <table class="table table-light">
@@ -27,7 +24,7 @@
             <td>id</td>
             <th>Usuario</th>
             <th>Contraseña</th>
-            <th>¬¬</th>
+            <th>Comentarios</th>
             <th>Acciones</th>
          </tr>
     </thead>
@@ -39,11 +36,11 @@
             <td>{{$ctaespejo->id}}</td>
             <td>{{$ctaespejo->usuario}}</td>
             <td>{{$ctaespejo->contrasenia}}</td>
-
+            <td>{{$ctaespejo->comentarios}}</td>
             <td>
-                <a href="{{url('/cuenta/' . $ctaespejo->id . '/edit')}}" class="btn btn-warning" >Editar</a>
+                <a href="{{url('/ctaespejo/' . $ctaespejo->id . '/edit')}}" class="btn btn-warning" >Editar</a>
                 -
-                <form action="{{url('/cuenta/' .  $ctaespejo->id)}}" method="post" class="d-inline">
+                <form action="{{url('/ctaespejo/' .  $ctaespejo->id)}}" method="post" class="d-inline">
                 @csrf
                 {{ method_field('DELETE') }}
                 <input class="btn btn-danger" type="submit" onclick=" return confirm('seguro quieres eliminar?')"

@@ -78,11 +78,13 @@ if(!empty($sensors)){
 
      public function buscarCtaespejo($id){
 
-        $cuentas=Cuenta::where('cliente_id','LIKE','%' . $id . '%')->first();
+        //return $id;
+        $cuenta=Cuenta::where('cliente_id','LIKE','%' . $id . '%')->first();
+        $idcuenta=$cuenta->id;
+        $ctaespejos=Ctaespejo::where('cuenta_id','LIKE','%' . $idcuenta . '%')->get();
+       // return $ctaespejos;
 
-        $ctaespejos=Ctaespejo::where('cuenta_id','LIKE','%' . $cuentas->id . '%')->get();
-
-        return view('prueba.buscarctaespejo', compact('ctaespejos'));
+        return view('prueba.buscarctaespejo', compact('ctaespejos','id','idcuenta'));
 
         }
 
