@@ -3,7 +3,7 @@
 <div class="container">
 
 
-    <h1 style="text-align: center; display: inline-block; width: 100%; ">Datos de Socios</h1>
+    <h1 style="text-align: center; display: inline-block; width: 100%; ">Datos de Clientes</h1>
 
     @if(Session::has('mensaje'))
             <div class="alert alert-success alert-dismissible" role="alert">

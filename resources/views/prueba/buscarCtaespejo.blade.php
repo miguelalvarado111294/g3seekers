@@ -14,7 +14,7 @@
     @endif
 
 <br>
-<a href="{{route('ctaesoejof.crear' , $idcuenta)}}" class="btn btn-success" >Registrar nueva cuenta</a>
+<a href="{{route('ctaesoejof.crear' , $id)}}" class="btn btn-success" >Registrar nueva cuenta espejo</a>
 <br><br>
             <h1>Cuenta Espejo de Socio</h1>
 

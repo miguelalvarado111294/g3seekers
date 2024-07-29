@@ -49,6 +49,7 @@ class CtaespejoController extends Controller
         ]);
 
 
+        return $ctaespejo->cuenta_id;
         return redirect()->route('buscar.ctaespejo', $ctaespejo->cuenta_id);
 
 
@@ -68,7 +69,7 @@ class CtaespejoController extends Controller
            ];
 
          $this->validate($request,$campos/*$mensaje*/);
-        $datosctaespejo = request()->except('_token');
+        $datosctaespejo = $request->except('_token');
         ctaespejo::insert($datosctaespejo);
 
         return redirect ('ctaespejo')->with('mensaje','cuenta agregada exitosamente ');
@@ -90,8 +91,6 @@ class CtaespejoController extends Controller
     {
         //
 
-
-
         $cuentas=cuenta::all();
         $clientes=cliente::all();
         $ctaespejo=ctaespejo::findORfail($id);
@@ -110,12 +109,12 @@ class CtaespejoController extends Controller
            ];
 
         $this->validate($request,$campos/*$mensaje*/);
-        $datosctaespejo = request()->except(['_token', '_method']);
+        $datosctaespejo = $request->except(['_token', '_method']);
 
      ctaespejo::where('id','=',$id)->update($datosctaespejo);
      $ctaespejo=ctaespejo::findOrFail($id);
-        return redirect ('ctaespejo')->with('mensaje','Cuenta editada exitosamente ');
-
+       // return redirect ('ctaespejo')->with('mensaje','Cuenta editada exitosamente ');
+        return redirect()->route('buscar.ctaespejo', $ctaespejo->id);
     }
 
     /**
@@ -124,6 +123,8 @@ class CtaespejoController extends Controller
     public function destroy($id)
     {
         ctaespejo::destroy($id);
-        return redirect ('ctaespejo')->with('mensaje','cuenta eliminada exitosamente ');
+       // return redirect ('ctaespejo')->with('mensaje','cuenta eliminada exitosamente ');
+       return redirect()->route('buscar.ctaespejo', $id);
+
     }
 }
