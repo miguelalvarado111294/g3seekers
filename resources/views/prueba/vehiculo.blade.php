@@ -45,8 +45,7 @@
           <td>{{$vehiculo->placa}} </td>
           <td> {{$vehiculo->placa}} </td>
           <td>{{$vehiculo->noserie}}</td>
-          <td> <a href="{{route('buscar.dispositivo' , $vehiculo->id)}}" class="btn btn-primary" >Dispositivo</a>
-          </td>
+
           <td>
 
             <a href="{{url('/vehiculo/' . $vehiculo->id . '/edit')}}" class="btn btn-warning" >Editar</a>
@@ -61,6 +60,7 @@
           </td>
 
           <td>
+             <a href="{{route('buscar.dispositivo' , $vehiculo->id)}}" class="btn btn-primary" >Dispositivo</a>
 
 
     </td>

@@ -34,10 +34,11 @@ public function buscarCuenta($id){
 
 public function buscarVehiculo ($id){
 
-    $cliente=   Cliente::findOrFail($id);
+    //id = cliente_id
+    //obtener vehiculos relacionados con cliente id
     $vehiculos= Vehiculo::where('cliente_id','LIKE','%' . $id . '%')->get();
-    $dispositivo=Dispositivo::where('cliente_id','LIKE','%' . $id . '%')->first();
-//    $dispositivo_id=$dispositivo->id;
+
+
     return view('prueba.vehiculo',compact('vehiculos','id'));
 
     }
@@ -45,24 +46,24 @@ public function buscarVehiculo ($id){
 
     public function buscarDispositivo($id){
 
-       // return $id;
-    $dispositivos=Dispositivo::where('vehiculo_id','LIKE','%' . $id . '%')->get();
+   $dispositivos=Dispositivo::where('id','LIKE','%' . $id . '%')->get();
 
-
-    return view ('prueba.buscarDispositivo',compact('dispositivos','id'));
+//return $dispositivos;
+   return view ('prueba.buscarDispositivo',compact('dispositivos','id'));
+//        return redirect ()->route('buscar.dispositivo', $id)->with('dispositivos');
 
     }
 
 
-     public function buscarLinea($id){
+     public function buscarLinea($id){//recibe id cliente
 
+      //  return $id;
+    $lineas=Linea::where('cliente_id' , 'LIKE' , '%' . $id . '%')->get()->take(1);
+return $idlinea=$lineas->id;
 
-        $lineas=Linea::where('cliente_id' , 'LIKE' , '%' . $id . '%')->get()->take(1);
-
-        return view ('prueba.buscarLinea',compact('lineas','id'));
+return view ('prueba.buscarLinea',compact('lineas','id','idlinea'));
 
      }
-
 
      public function buscarSensor($id){
 

@@ -12,9 +12,8 @@ use Illuminate\Http\Request;
 
 class DispositivoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+
     public function index()
     {
 
@@ -70,23 +69,23 @@ class DispositivoController extends Controller
 
     public function stodis(Request $request ,$id){
 
-    $vehiculo=Vehiculo::where('id','LIKE', '%' . $id . '%')->first();
-    // return $linea;
+    //$vehiculo=Vehiculo::where('cliente_id','LIKE', '%' . $id . '%')->get();
+$vehiculo=Vehiculo::find($id);
+
     $dispositivo= new Dispositivo();
 
     $dispositivo->modelo=$request->modelo;
     $dispositivo->noserie=$request->noserie;
     $dispositivo->imei=$request->imei;
     $dispositivo->comentarios=$request->comentarios;
-    $dispositivo->cliente_id=$vehiculo->cliente_id;
     $dispositivo->vehiculo_id=$vehiculo->id;
-    //$dispositivo->sensor_id=$request->color;
-    //$dispositivo->linea_id=$lineaid;
+    $dispositivo->cliente_id=$vehiculo->cliente_id;
+
+    //return $dispositivo;
 
     $dispositivo->save();
 
-
-return redirect()->route('buscar.dispositivo',$id);
+    return redirect()->route('buscar.dispositivo',$id);
 
 
  }
@@ -125,7 +124,7 @@ return redirect()->route('buscar.dispositivo',$id);
 
        // return response()->json($datosReferencia);
        // return redirect ('dispositivo')->with('mensaje','Registro editado exitosamente ');
-       return redirect()->route('buscar.dispositivo',$dispositivo->cliente_id);
+       return redirect()->route('buscar.dispositivo',$dispositivo->vehiculo_id);
 
     }
 
@@ -138,7 +137,7 @@ return redirect()->route('buscar.dispositivo',$id);
         //return redirect ('dispositivo')->with('mensaje','dispositivo eliminada exitosamente ');
         $cliente=Cliente::findOrFail($id);
 
-        return redirect()->route('buscar.dispositivo',$cliente->id);
+        return redirect()->route('buscar.dispositivo',$id);
 
     }
 }

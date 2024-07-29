@@ -42,35 +42,6 @@
         <br>
 
 
-        <div class="form-group">
-            <label for="cliente_id">Cliente</label>
-            <select class="form-control" name="cliente_id" >
-                @foreach ($clientes as $cliente)
-           <option value="{{isset($cliente->id)?$cliente->id:old('cliente_id')}}" id="cliente_id">
-
-            {{ $cliente['nombre'] }} {{ $cliente['apellidopat'] }} {{ $cliente['apellidomat'] }}
-
-            </option>
-                @endforeach
-                  </select>
-
-                  <div class="form-group">
-                    <label for="dispositivo_id">dispositivo_id</label>
-                    <select class="form-control" name="dispositivo_id" >
-                        @foreach ($dispositivos as $dispositivo)
-                   <option value="{{isset($dispositivo->id)?$dispositivo->id:old('dispositivo_id')}}" id="dispositivo_id">
-
-                    {{ $dispositivo['modelo'] }} {{ $dispositivo['imei'] }}
-
-                    </option>
-                        @endforeach
-                          </select>
-
-
-
-
-
-
 
     <div class="form-group">
     <input class="btn btn-success" type="submit" class="form-control" value="{{$modo}} datos">

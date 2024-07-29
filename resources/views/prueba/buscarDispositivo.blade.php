@@ -35,15 +35,15 @@
 <tbody>
        @foreach ($dispositivos as $dispositivo)
         <tr>
-           {{-- <td> {{$dispositivo->cliente->nombre}} {{$dispositivo->cliente->segnombre}} {{$dispositivo->cliente->apellidopat}} {{$dispositivo->cliente->apellidomat}} </td>
-            --}}<td> {{$dispositivo->id}} {{$dispositivo->modelo}}</td>
+           {{-- <td> {{$dispositivo->cliente->nombre}} {{$dispositivo->cliente->segnombre}} {{$dispositivo->cliente->apellidopat}} {{$dispositivo->cliente->apellidomat}} </td>--}}
+            <td> {{$dispositivo->id}} {{$dispositivo->modelo}}</td>
             <td>{{$dispositivo->noserie}}</td>
             <td>{{$dispositivo->imei}}</td>
 <td>
 
 </td>
 <td>
-    <a href="{{route('buscar.linea' , $dispositivo->cliente->id)}}" class="btn btn-warning" >Linea</a>
+    <a href="{{route('buscar.linea' , $dispositivo->cliente_id)}}" class="btn btn-warning" >Linea</a>
     <a href="{{route('buscar.sensor', $dispositivo->id)}}" class="btn btn-warning" >Sensor</a></td>
 
 </td>

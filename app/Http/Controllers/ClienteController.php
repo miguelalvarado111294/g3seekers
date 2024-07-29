@@ -13,23 +13,24 @@ class ClienteController extends Controller
 
     public function index(Request $request)
     {
-
+        //recuperar todos los clientes
         $clientes=Cliente::latest('id')->paginate(10);
+
         return view('cliente.index',compact('clientes'));
 
     }
 
     public function create()
     {
+        //peticion desde el boton del index
         return view('cliente.create');
     }
 
-    public function store(storecliente $request)
+    public function store(storecliente $request)//form request para validacion
     {
     /*$request->validate([]);*/
 
             $datosCliente = $request->except('_token');
-
 
             if($request->hasFile('actaconstitutiva')) {
             $datosCliente['actaconstitutiva']=$request->file('actaconstitutiva')->store('uploads','public');
@@ -43,18 +44,21 @@ class ClienteController extends Controller
             $datosCliente['compPago']=$request->file('compPago')->store('uploads','public');
             }
 
+            //insertar datos al modelo cliente
             Cliente::insert($datosCliente);
 
             return redirect()->route('cliente.index');
     }
 
 
-    public function show($id)
+    public function show($id)//recive id de cliente
     {
 
-    $cliente=cliente::findOrFail($id);
+    //traer datos de cliente
+    $cliente=cliente::find($id);
+    //traer referencias a la vista show
     $referencias=Referencia::where('cliente_id','LIKE','%' . $id . '%')->get();
-
+    //unir datos de las consultas en un solo array para enviar a la vista
     $data=[
     'cliente' =>$cliente,
     'referencias' => $referencias
@@ -79,7 +83,7 @@ class ClienteController extends Controller
 
     }
 
-public function edit($id)
+public function edit($id)//recive el id del cliente para editarlo
 {
 
     $cliente=cliente::findOrfail($id);
@@ -87,9 +91,9 @@ public function edit($id)
 }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id)//atrayendo los datos del cliente form
     {
-
+        //validacion de datos
         $campos= [
             'nombre'=>'required|alpha|min:2|max:100',
             'segnombre'=> 'nullable|alpha',

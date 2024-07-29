@@ -49,7 +49,6 @@ class CtaespejoController extends Controller
         ]);
 
 
-        return $ctaespejo->cuenta_id;
         return redirect()->route('buscar.ctaespejo', $ctaespejo->cuenta_id);
 
 

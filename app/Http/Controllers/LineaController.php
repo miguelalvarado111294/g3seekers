@@ -9,6 +9,7 @@ use Validator;
 use App\Models\linea;
 use App\Models\dispositivo;
 use App\Models\cliente;
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Route;
 
 
@@ -33,18 +34,6 @@ class LineaController extends Controller
 
     }
 
-    public function crearlinea($id)
-    {
-
-        return view('ctaespejo.createid', ['id'=>$id] );
-
-    }
-
-
-
-
-
-
     public function store(Request $request)
     {
         $campos= [
@@ -57,12 +46,19 @@ class LineaController extends Controller
         $this->validate($request,$campos/*$mensaje*/);
 
 
-        $datosLinea= request()->except('_token');
+        $datosLinea= $request->except('_token');
         Linea::insert($datosLinea);
         return redirect ('linea')->with('mensaje','linea agregado exitosamente ');
     }
 
 
+    public function crearlinea($id)
+    {
+
+        //return $id;
+        return view('linea.createid', ['id'=>$id] );
+
+    }
 
     public function storep(Request $request, $id)
     {
@@ -78,9 +74,9 @@ class LineaController extends Controller
 
         */
 
-        $dispositivo=Dispositivo::where('cliente_id','LIKE', '%' . $id . '%')->first();
+       $dispositivo=Dispositivo::where('cliente_id','LIKE', '%' . $id . '%')->first();
 
-$linea= new Linea;
+       $linea= new Linea;
 $linea->simcard=$request->simcard;
 $linea->telefono=$request->telefono;
 $linea->tipolinea=$request->tipolinea;
@@ -89,10 +85,11 @@ $linea->comentarios=$request->comentarios;
 $linea->cliente_id=$id;
 $linea->dispositivo_id=$dispositivo->id;
 
-//return $linea;
 $linea->save();
 
 return redirect()->route('buscar.linea',$id);
+
+//return redirect
 
 
 //        return redirect ('linea')->with('mensaje','linea agregado exitosamente ');
@@ -119,7 +116,7 @@ return redirect()->route('buscar.linea',$id);
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id)//recive id de la linea
     {
 
         $campos= [
@@ -127,29 +124,37 @@ return redirect()->route('buscar.linea',$id);
             'telefono'=>'required|numeric|digits:10',
             'tipolinea'=>'required|alpha|min:2|max:5',
             'renovacion'=>'required|alpha'
-
-
            ];
+
         $this->validate($request,$campos/*$mensaje*/);
-
-        $datosLinea = request()->except(['_token', '_method']);
-
+        $datosLinea = $request->except(['_token', '_method']);
         Linea::where('id','=',$id)->update($datosLinea);
-        $linea=Linea::findOrFail($id);
-        return redirect ('linea')->with('mensaje','linea editada exitosamente ');
+
+
+        $linea=Linea::where('id','LIKE', '%' . $id . '%')->first();
+        $clienteid=$linea->cliente_id;
+        //return $clienteid;
+
+
+        return view('prueba.buscarLinea', ['cliente_id' => $clienteid ]);
+
+
     }
 
     public function destroy($id)
     {
-        $linea=Linea::findOrFail($id);
+        Linea::destroy($id);
+
+    //    $linea=Linea::findOrFail($id);
   /*     if(Storage::delete('public/'. $cliente->actaconstitutiva)){
   espacio para eliminar foto del storage implemetntar ... mas tardee :9
       }*/
-    Linea::destroy($id);
+
     //return redirect ('linea')->with('mensaje','linea eliminada exitosamente ');
 
-    $cliente=Cliente::findOrFail($id);
+    $cliente=Cliente::where('cliente_id','LIKE', '%' . $id . '%')->first();
 
     return redirect()->route('buscar.linea',$cliente->id);
+
 }
-}
+ }

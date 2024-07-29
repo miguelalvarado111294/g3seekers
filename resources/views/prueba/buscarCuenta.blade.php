@@ -26,6 +26,7 @@
             <th>Contraseña</th>
             <th>Contraseña de motor</th>
             <th>Acciones</th>
+            <th>Vehiculos / Cuentas Espejo</th>
          </tr>
     </thead>
 
@@ -36,8 +37,6 @@
             <td>{{$cuenta->contrasenia}}</td>
             <td>{{$cuenta->contraseniaParo}}</td>
             <td>
-                <a href="{{route('buscar.vehiculo', $id)}}" class="btn btn-primary ; float-right" >Vehiculos</a>
-                <a href="{{route('buscar.ctaespejo',$cuenta->id )}}" class="btn btn-primary" >Cuenta Espejo</a>
 
                 <a href="{{url('/cuenta/' . $cuenta->id . '/edit')}}" class="btn btn-warning" >Editar</a>
                 <form action="{{url('/cuenta/' . $cuenta->id)}}" method="post" class="d-inline">
@@ -46,6 +45,11 @@
                 <input class="btn btn-danger" type="submit" onclick=" return confirm('seguro quieres eliminar?')"
                 value="Borrar">
                 </form>
+            </td>
+            <td>
+                <a href="{{route('buscar.vehiculo', $id)}}" class="btn btn-primary ; float-right" >Vehiculos</a>
+                <a href="{{route('buscar.ctaespejo',$cuenta->id )}}" class="btn btn-primary" >Cuenta Espejo</a>
+
             </td>
         </tr>
         @endforeach
