@@ -4,13 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\Storage;
-use Validator;
 use App\Models\linea;
 use App\Models\dispositivo;
 use App\Models\cliente;
-use GuzzleHttp\Client;
-use Illuminate\Support\Facades\Route;
 
 
 class LineaController extends Controller
