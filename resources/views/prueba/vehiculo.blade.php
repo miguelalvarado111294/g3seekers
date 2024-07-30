@@ -3,7 +3,6 @@
 @section('content')
 <div class="container">
 
-
     @if(Session::has('mensaje'))
             <div class="alert alert-success alert dismissible" role="alert">
             {{Session::get('mensaje')}}
@@ -13,8 +12,6 @@
     </div>
     @endif
 
-
-
 <a href="{{route('vehiculof.crear' ,  $id)}}" class="btn btn-success" >Registrar nuevo vehiculo</a>
 
 <br><br>
@@ -22,7 +19,7 @@
 <table class="table table-light">
     <thead class="thead-light">
         <tr>
-            <th>Id del dispositivo</th>
+            <th>Id del vehiculo</th>
             <th>Marca</th>
             <th>Modelo</th>
             <th>Color</th>
@@ -34,36 +31,28 @@
 
          </tr>
     </thead>
-
     <tbody>
         @foreach ($vehiculos as $vehiculo)
         <tr>
-          <td>id  </td>
-          <td>{{$vehiculo->marca}} </td>
-          <td>{{$vehiculo->modelo}}</td>
-          <td>{{$vehiculo->color}} </td>
-          <td>{{$vehiculo->placa}} </td>
-          <td> {{$vehiculo->placa}} </td>
-          <td>{{$vehiculo->noserie}}</td>
-
-          <td>
-
-            <a href="{{url('/vehiculo/' . $vehiculo->id . '/edit')}}" class="btn btn-warning" >Editar</a>
-
-            <form action="{{url('/vehiculo/' .  $vehiculo->id)}}" method="post" class="d-inline">
+            <td>{{$vehiculo->id}}</td>
+            <td>{{$vehiculo->marca}} </td>
+            <td>{{$vehiculo->modelo}}</td>
+            <td>{{$vehiculo->color}} </td>
+            <td>{{$vehiculo->placa}} </td>
+            <td> {{$vehiculo->placa}} </td>
+            <td>{{$vehiculo->noserie}}</td>
+            <td>
+                <a href="{{url('/vehiculo/' . $vehiculo->id . '/edit')}}" class="btn btn-warning" >Editar</a>
+                <form action="{{url('/vehiculo/' .  $vehiculo->id)}}" method="post" class="d-inline">
                 @csrf
                 {{ method_field('DELETE') }}
                 <input class="btn btn-danger" type="submit" onclick=" return confirm('seguro quieres eliminar?')"
                 value="Borrar">
-            </form>
-
-          </td>
-
-          <td>
-             <a href="{{route('buscar.dispositivo' , $vehiculo->id)}}" class="btn btn-primary" >Dispositivo</a>
-
-
-    </td>
+                </form>
+            </td>
+            <td>
+                <a href="{{route('buscar.dispositivo' , $vehiculo->cliente_id)}}" class="btn btn-primary" >Dispositivo</a>
+            </td>
         @endforeach
     </tbody>
 </table>

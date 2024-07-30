@@ -25,37 +25,34 @@
             <th>Modelo</th>
             <th>Numero de Serie</th>
             <th>Imei</th>
-            <th></th>
-            <th></th>
             <th>Acciones</th>
+            <th></th>
 
         </tr>
     </thead>
 
-<tbody>
+    <tbody>
        @foreach ($dispositivos as $dispositivo)
         <tr>
-           {{-- <td> {{$dispositivo->cliente->nombre}} {{$dispositivo->cliente->segnombre}} {{$dispositivo->cliente->apellidopat}} {{$dispositivo->cliente->apellidomat}} </td>--}}
-            <td> {{$dispositivo->id}} {{$dispositivo->modelo}}</td>
+            <td>{{$dispositivo->modelo}}</td>
             <td>{{$dispositivo->noserie}}</td>
             <td>{{$dispositivo->imei}}</td>
-<td>
 
-</td>
 <td>
-    <a href="{{route('buscar.linea' , $dispositivo->cliente_id)}}" class="btn btn-warning" >Linea</a>
-    <a href="{{route('buscar.sensor', $dispositivo->id)}}" class="btn btn-warning" >Sensor</a></td>
+    <a href="{{url('/dispositivo/' . $dispositivo->id . '/edit')}}" class="btn btn-warning" >Editar</a>
 
+    <form action="{{url('/dispositivo/' .  $dispositivo->id)}}" method="post" class="d-inline">
+    @csrf
+    {{ method_field('DELETE') }}
+    <input class="btn btn-danger" type="submit" onclick=" return confirm('seguro quieres eliminar?')"
+    value="Borrar">
+    </form>
 </td>
             <td>
-                    <a href="{{url('/dispositivo/' . $dispositivo->id . '/edit')}}" class="btn btn-warning" >Editar</a>
 
-                    <form action="{{url('/dispositivo/' .  $dispositivo->id)}}" method="post" class="d-inline">
-                    @csrf
-                    {{ method_field('DELETE') }}
-                    <input class="btn btn-danger" type="submit" onclick=" return confirm('seguro quieres eliminar?')"
-                    value="Borrar">
-                    </form>
+                    <a href="{{route('buscar.linea' , $dispositivo->cliente_id  )}}" class="btn btn-warning" >Linea</a>
+    <a href="{{route('buscar.sensor', $dispositivo->id)}}" class="btn btn-warning" >Sensor</a></td>
+
             </td>
 
 

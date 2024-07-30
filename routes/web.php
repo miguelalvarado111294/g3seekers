@@ -18,7 +18,6 @@ Route::resource('vehiculo', App\Http\Controllers\VehiculoController::class);
 Route::resource('linea',    App\Http\Controllers\LineaController::class);
 Route::resource('cuenta',   App\Http\Controllers\CuentaController::class);
 Route::resource('ctaespejo',App\Http\Controllers\CtaespejoController::class);
-Route::resource('ctaespejosecundaria',App\Http\Controllers\ctaespejosecundariaController::class);
 Route::resource('dispositivo',App\Http\Controllers\DispositivoController::class);
 Route::resource('order',App\Http\Controllers\OrderController::class);
 Route::resource('sensor',App\Http\Controllers\SensorController::class);

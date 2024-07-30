@@ -31,16 +31,7 @@ class DispositivoController extends Controller
         return view('dispositivo.create',compact('vehiculos','clientes'));
 
     }
-    public function creardispositivo($id)
-    {
 
-        return view('dispositivo.crear');
-
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
 
@@ -62,15 +53,14 @@ class DispositivoController extends Controller
     public function creardisp($id)
     {
 
-//return $id; //id vehiculo
-        return view('dispositivo.createid', ['id'=>$id] );
+    //return $id;
+    return view('dispositivo.createid', ['id'=>$id] );
 
     }
 
     public function stodis(Request $request ,$id){
 
-    //$vehiculo=Vehiculo::where('cliente_id','LIKE', '%' . $id . '%')->get();
-$vehiculo=Vehiculo::find($id);
+    $vehiculo=Vehiculo::where('cliente_id','LIKE', '%' . $id . '%')->first();
 
     $dispositivo= new Dispositivo();
 
@@ -78,10 +68,9 @@ $vehiculo=Vehiculo::find($id);
     $dispositivo->noserie=$request->noserie;
     $dispositivo->imei=$request->imei;
     $dispositivo->comentarios=$request->comentarios;
-    $dispositivo->vehiculo_id=$vehiculo->id;
     $dispositivo->cliente_id=$vehiculo->cliente_id;
+    $dispositivo->vehiculo_id=$vehiculo->id;
 
-    //return $dispositivo;
 
     $dispositivo->save();
 
@@ -124,7 +113,9 @@ $vehiculo=Vehiculo::find($id);
 
        // return response()->json($datosReferencia);
        // return redirect ('dispositivo')->with('mensaje','Registro editado exitosamente ');
-       return redirect()->route('buscar.dispositivo',$dispositivo->vehiculo_id);
+
+       return redirect()->route('buscar.dispositivo',$dispositivo->cliente_id);
+
 
     }
 
@@ -133,11 +124,12 @@ $vehiculo=Vehiculo::find($id);
      */
     public function destroy($id)
     {
-        dispositivo::destroy($id);
+        Dispositivo::destroy($id);
         //return redirect ('dispositivo')->with('mensaje','dispositivo eliminada exitosamente ');
-        $cliente=Cliente::findOrFail($id);
 
-        return redirect()->route('buscar.dispositivo',$id);
+        $dispositivos=Dispositivo::where('cliente_id','LIKE','%' . $id . '%')->get();
+
+       return redirect()->back();
 
     }
 }
