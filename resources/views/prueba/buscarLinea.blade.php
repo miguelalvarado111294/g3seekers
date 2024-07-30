@@ -13,7 +13,7 @@
 
 
 <br><br>
-<a href="{{route('lineaf.crear',$idlinea)}}" class="btn btn-success" >Registrar Nueva Linea</a>
+<a href="{{route('lineaf.crear',$dispositivo->id)}}" class="btn btn-success" >Registrar Nueva Linea</a>
 
 <br><br><br>
 <h1>Datos de Línea</h1>

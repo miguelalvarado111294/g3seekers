@@ -50,8 +50,8 @@
 </td>
             <td>
 
-                    <a href="{{route('buscar.linea' , $dispositivo->cliente_id  )}}" class="btn btn-warning" >Linea</a>
-    <a href="{{route('buscar.sensor', $dispositivo->id)}}" class="btn btn-warning" >Sensor</a></td>
+                    <a href="{{route('buscar.linea' , $dispositivo->id  )}}" class="btn btn-warning" >Linea</a>
+                    <a href="{{route('buscar.sensor', $dispositivo->id)}}" class="btn btn-warning" >Sensor</a></td>
 
             </td>
 

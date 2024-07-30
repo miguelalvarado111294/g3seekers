@@ -74,16 +74,17 @@ class LineaController extends Controller
 
         */
 
-       $dispositivo=Dispositivo::where('cliente_id','LIKE', '%' . $id . '%')->first();
+$dispositivo=Dispositivo::find($id);
 
-       $linea= new Linea;
+$linea= new Linea;
 $linea->simcard=$request->simcard;
 $linea->telefono=$request->telefono;
 $linea->tipolinea=$request->tipolinea;
 $linea->renovacion=$request->renovacion;
 $linea->comentarios=$request->comentarios;
-$linea->cliente_id=$id;
-$linea->dispositivo_id=$dispositivo->id;
+$linea->dispositivo_id=$id;
+$linea->cliente_id=$dispositivo->cliente_id;
+
 
 $linea->save();
 
@@ -130,13 +131,12 @@ return redirect()->route('buscar.linea',$id);
         $datosLinea = $request->except(['_token', '_method']);
         Linea::where('id','=',$id)->update($datosLinea);
 
+        //$linea=Linea::where('linea_id','LIKE','%' . $id . '%')->get();
+        $linea=Linea::find($id);
 
-        $linea=Linea::where('id','LIKE', '%' . $id . '%')->first();
-        $clienteid=$linea->cliente_id;
-        //return $clienteid;
+       // return $linea->dispositivo_id;
 
-
-        return view('prueba.buscarLinea', ['cliente_id' => $clienteid ]);
+        return redirect()->route('buscar.linea',$linea->dispositivo_id);
 
 
     }
@@ -144,17 +144,7 @@ return redirect()->route('buscar.linea',$id);
     public function destroy($id)
     {
         Linea::destroy($id);
-
-    //    $linea=Linea::findOrFail($id);
-  /*     if(Storage::delete('public/'. $cliente->actaconstitutiva)){
-  espacio para eliminar foto del storage implemetntar ... mas tardee :9
-      }*/
-
-    //return redirect ('linea')->with('mensaje','linea eliminada exitosamente ');
-
-    $cliente=Cliente::where('cliente_id','LIKE', '%' . $id . '%')->first();
-
-    return redirect()->route('buscar.linea',$cliente->id);
+        return redirect()->back();
 
 }
  }

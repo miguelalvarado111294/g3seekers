@@ -43,13 +43,15 @@ class PruebaController extends Controller
     }
 
 
-     public function buscarLinea($id){//recibe id cliente $dispositivo->cliente_id
+     public function buscarLinea($id){//recibe id cliente $dispositivo_id
 
-    //return $id;
-    $lineas=Linea::where('cliente_id' , 'LIKE' , '%' . $id . '%')->get()->take(1);
-    return $idlinea=$lineas->id;
+    $dispositivo=Dispositivo::find($id);
+    $lineas=Linea::where('cliente_id','LIKE','%' . $dispositivo->cliente_id . '%')->get();
 
-    return view ('prueba.buscarLinea',compact('lineas','id','idlinea'));
+
+
+    return view('prueba.buscarLinea',compact('lineas','dispositivo'));
+
 
     }
 
