@@ -99,11 +99,8 @@ class VehiculoController extends Controller
 
      public function destroy($id)
     {
-        //
         $vehiculo=Vehiculo::findOrFail($id);
-
         Vehiculo::destroy($id);
-//      return redirect ('vehiculo')->with('mensaje','vehiculo eliminado exitosamente ');
         return redirect()->route('buscar.vehiculo', $vehiculo->cliente_id);
 
     }

@@ -21,9 +21,6 @@ class DispositivoController extends Controller
         return view('dispositivo.index',$datos);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $vehiculos=vehiculo::all();
@@ -45,7 +42,6 @@ class DispositivoController extends Controller
         $datosDispositivo = $request->except('_token');
         Dispositivo::insert($datosDispositivo);
 
-       // return response()->json($datosReferencia);
         return redirect ('dispositivo')->with('mensaje','Dispositivo agregado exitosamente ');
 
     }
@@ -53,7 +49,6 @@ class DispositivoController extends Controller
     public function creardisp($id)
     {
 
-    //return $id;
     return view('dispositivo.createid', ['id'=>$id] );
 
     }
@@ -63,38 +58,31 @@ class DispositivoController extends Controller
     $vehiculo=Vehiculo::find($vehiculoid);
     $clienteid=$vehiculo->cliente_id;
 
-
-//$vehiculo=Vehiculo::where('cliente_id','LIKE', '%' . $id . '%')->first();
     $dispositivo= new Dispositivo();
-
     $dispositivo->modelo=$request->modelo;
     $dispositivo->noserie=$request->noserie;
     $dispositivo->imei=$request->imei;
     $dispositivo->comentarios=$request->comentarios;
     $dispositivo->vehiculo_id=$vehiculoid;
     $dispositivo->cliente_id=$clienteid;
-
- //       return $dispositivo;
-
     $dispositivo->save();
 
     return redirect()->route('buscar.dispositivo', $vehiculoid=$id);
 
-
  }
     public function show(dispositivo $dispositivo)
     {
-        //
+
     }
 
 
     public function edit( $id)
     {
-        //
+
         $vehiculos=vehiculo::all();
         $clientes=cliente::all();
         $dispositivo=dispositivo::findOrfail($id);
-       return view('dispositivo.edit', compact('dispositivo','clientes','vehiculos'));
+        return view('dispositivo.edit', compact('dispositivo','clientes','vehiculos'));
 
 
     }
@@ -115,25 +103,16 @@ class DispositivoController extends Controller
      Dispositivo::where('id','=',$id)->update($datosDispositivo);
      $dispositivo=Dispositivo::findOrFail($id);
 
-       // return response()->json($datosReferencia);
-       // return redirect ('dispositivo')->with('mensaje','Registro editado exitosamente ');
-
-       return redirect()->route('buscar.dispositivo',$dispositivo->vehiculo_id);
+     return redirect()->route('buscar.dispositivo',$dispositivo->vehiculo_id);
 
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
+   public function destroy($id)
     {
         Dispositivo::destroy($id);
-        //return redirect ('dispositivo')->with('mensaje','dispositivo eliminada exitosamente ');
-
         $dispositivos=Dispositivo::where('cliente_id','LIKE','%' . $id . '%')->get();
-
-       return redirect()->back();
+        return redirect()->back();
 
     }
 }

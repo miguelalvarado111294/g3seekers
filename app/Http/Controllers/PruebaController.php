@@ -42,41 +42,28 @@ class PruebaController extends Controller
     $vehiculoid=$id;
 
     $dispositivos=Dispositivo::where('vehiculo_id','LIKE','%' . $id . '%')->get();
-
-//return $dispositivos;
     return view ('prueba.buscarDispositivo',compact('dispositivos','id'));
 
-
-    //return $vehiculoid;
-    // $dispositivos=Dispositivo::where('cliente_id','LIKE','%' . $id . '%')->get();
-    //return view ('prueba.buscarDispositivo',compact('dispositivos','id'));
-    //return redirect ()->route('buscar.dispositivo', $id)->with('dispositivos');
-
     }
-
 
     public function buscarLinea($id){//recibe $dispositivo_id
 
     $dispositivoid=$id;
-
     $lineas=Linea::where('dispositivo_id','LIKE','%' . $dispositivoid . '%')->get();
 
     return view('prueba.buscarLinea',compact('lineas','dispositivoid'));
-
 
     }
 
      public function buscarSensor($id){
 
-    $sensors=Sensor::where('dispositivo_id' , 'LIKE' , '%' . $id . '%')->get();
-
-    return view('prueba.buscarSensor',compact('sensors','id'));
+        $sensors=Sensor::where('dispositivo_id' , 'LIKE' , '%' . $id . '%')->get();
+        return view('prueba.buscarSensor',compact('sensors','id'));
 
      }
 
      public function buscarCtaespejo($id){
 
-    //return $id;
     $ctaespejos=Ctaespejo::where('cuenta_id','LIKE','%' . $id . '%')->get();
 
 

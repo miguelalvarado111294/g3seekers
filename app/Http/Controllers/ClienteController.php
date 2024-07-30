@@ -15,7 +15,6 @@ class ClienteController extends Controller
     {
         //recuperar todos los clientes
         $clientes=Cliente::latest('id')->paginate(10);
-
         return view('cliente.index',compact('clientes'));
 
     }
@@ -31,7 +30,7 @@ class ClienteController extends Controller
     /*$request->validate([]);*/
 
             $datosCliente = $request->except('_token');
-
+            //insertar FILES al store
             if($request->hasFile('actaconstitutiva')) {
             $datosCliente['actaconstitutiva']=$request->file('actaconstitutiva')->store('uploads','public');
             }elseif($request->hasFile('consFiscal')){

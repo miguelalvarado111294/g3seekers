@@ -58,17 +58,7 @@ class LineaController extends Controller
 
     public function storep(Request $request, $dispositivoid)
     {
-       /* $campos= [
-            'simcard'=>'required|numeric|digits:18',
-            'telefono'=>'required|numeric|digits:10',
-            'tipolinea'=>'required|alpha|min:2|max:5',
-            'renovacion'=>'required|alpha'
 
-           ];
-        $this->validate($request,$campos,$mensaje);
-       $datosLinea= request()->except('_token');
-
-        */
 
 $dispositivo=Dispositivo::find($dispositivoid);
 
@@ -80,17 +70,11 @@ $linea->renovacion=$request->renovacion;
 $linea->comentarios=$request->comentarios;
 $linea->dispositivo_id=$dispositivoid;
 $linea->cliente_id=$dispositivo->cliente_id;
-
-//return $linea;
 $linea->save();
 
 return redirect()->route('buscar.linea',$dispositivoid);
 
-//return redirect
-
-
-//        return redirect ('linea')->with('mensaje','linea agregado exitosamente ');
-    }
+}
 
 
 
@@ -98,13 +82,13 @@ return redirect()->route('buscar.linea',$dispositivoid);
 
     public function show(linea $cliente)
     {
-        //
+
     }
 
 
     public function edit($id)
     {
-        //
+
         $clientes=cliente::all();
         $dispositivos=dispositivo::all();
         $linea=Linea::findOrfail($id);
@@ -127,13 +111,9 @@ return redirect()->route('buscar.linea',$dispositivoid);
         $datosLinea = $request->except(['_token', '_method']);
         Linea::where('id','=',$id)->update($datosLinea);
 
-        //$linea=Linea::where('linea_id','LIKE','%' . $id . '%')->get();
         $linea=Linea::find($id);
 
-       // return $linea->dispositivo_id;
-
         return redirect()->route('buscar.linea',$linea->dispositivo_id);
-
 
     }
 
@@ -141,6 +121,5 @@ return redirect()->route('buscar.linea',$dispositivoid);
     {
         Linea::destroy($id);
         return redirect()->back();
-
-}
+    }
  }

@@ -59,7 +59,7 @@ public function stocta (Request $request,$id){
 
     public function store(Request $request)
     {
-        //
+
         $campos= [
             'usuario'=>'required|alpha_dash|min:2|max:15',
             'contrasenia'=>'required|alpha_dash|min:2|max:15',
@@ -77,7 +77,7 @@ public function stocta (Request $request,$id){
 
     public function show(cuenta $referencia)
     {
-        //
+
     }
 
     public function edit($id)
@@ -103,10 +103,10 @@ public function stocta (Request $request,$id){
 
      Cuenta::where('id','=',$id)->update($datosCuenta);
      $cuenta=Cuenta::findOrFail($id);
-    //        return redirect ('cuenta')->with('mensaje','Cuenta editada exitosamente ');
 
-return redirect()->route('buscar.cuenta',$cuenta->cliente_id);
-}
+
+    return redirect()->route('buscar.cuenta',$cuenta->cliente_id);
+    }
 
     public function destroy(Request $request,$id)
     {
