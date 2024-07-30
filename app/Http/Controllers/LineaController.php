@@ -60,7 +60,7 @@ class LineaController extends Controller
 
     }
 
-    public function storep(Request $request, $id)
+    public function storep(Request $request, $dispositivoid)
     {
        /* $campos= [
             'simcard'=>'required|numeric|digits:18',
@@ -74,7 +74,7 @@ class LineaController extends Controller
 
         */
 
-$dispositivo=Dispositivo::find($id);
+$dispositivo=Dispositivo::find($dispositivoid);
 
 $linea= new Linea;
 $linea->simcard=$request->simcard;
@@ -82,13 +82,13 @@ $linea->telefono=$request->telefono;
 $linea->tipolinea=$request->tipolinea;
 $linea->renovacion=$request->renovacion;
 $linea->comentarios=$request->comentarios;
-$linea->dispositivo_id=$id;
+$linea->dispositivo_id=$dispositivoid;
 $linea->cliente_id=$dispositivo->cliente_id;
 
-
+//return $linea;
 $linea->save();
 
-return redirect()->route('buscar.linea',$id);
+return redirect()->route('buscar.linea',$dispositivoid);
 
 //return redirect
 

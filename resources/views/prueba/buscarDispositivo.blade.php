@@ -21,7 +21,7 @@
 <table class="table table-light">
     <thead class="thead-light">
         <tr>
-
+            <th>id</th>
             <th>Modelo</th>
             <th>Numero de Serie</th>
             <th>Imei</th>
@@ -34,6 +34,7 @@
     <tbody>
        @foreach ($dispositivos as $dispositivo)
         <tr>
+            <td> {{$dispositivo->id}} </td>
             <td>{{$dispositivo->modelo}}</td>
             <td>{{$dispositivo->noserie}}</td>
             <td>{{$dispositivo->imei}}</td>

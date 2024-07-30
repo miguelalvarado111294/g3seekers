@@ -110,8 +110,7 @@ return redirect()->route('buscar.cuenta',$cuenta->cliente_id);
 
     public function destroy(Request $request,$id)
     {
-        $cuenta=Cuenta::findOrFail($id);
         cuenta::destroy($id);
-        return redirect()->route('buscar.cuenta',$cuenta->cliente_id);
+        return redirect()->back();
     }
 }

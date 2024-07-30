@@ -13,44 +13,55 @@ use App\Models\sensor;
 class PruebaController extends Controller
 {
 
-    public function buscarCuenta($id){//recibe id desde show
+    public function buscarCuenta($id){//recibe cliennte id desde show
 
     $cuentas=Cuenta::where('cliente_id','LIKE', '%' . $id . '%')->get()->take(1);
     $clientes=Cliente::find($id);
+    $clienteid=$clientes->id;
 
-    return view('prueba.buscarCuenta', compact('cuentas','clientes','id'));
+
+    return view('prueba.buscarCuenta', compact('cuentas','id','clienteid'));
 
     }
 
 
     public function buscarVehiculo ($id){//recive id cliente desde buscar cta
+        //return $id;
 
     //obtener vehiculos relacionados con cliente id
-    $vehiculos= Vehiculo::where('cliente_id','LIKE','%' . $id . '%')->get();
+    $vehiculos= Vehiculo::where('cliente_id','LIKE','%' . $id . '%')->get();//busca vehiculos ligados a id de cliete
+
 
     return view('prueba.vehiculo',compact('vehiculos','id'));
-                                                        //se envia a view vehiculo id de cliente
+    //se envia a view vehiculo id de cliente
 
     }
 
 
-    public function buscarDispositivo($id){//recibe desde view vehiculos id de cliente
-    $dispositivos=Dispositivo::where('cliente_id','LIKE','%' . $id . '%')->get();
+    public function buscarDispositivo($id){//recibe desde view vehiculos id de vehiculo
+    $vehiculoid=$id;
 
+    $dispositivos=Dispositivo::where('vehiculo_id','LIKE','%' . $id . '%')->get();
+
+//return $dispositivos;
     return view ('prueba.buscarDispositivo',compact('dispositivos','id'));
+
+
+    //return $vehiculoid;
+    // $dispositivos=Dispositivo::where('cliente_id','LIKE','%' . $id . '%')->get();
+    //return view ('prueba.buscarDispositivo',compact('dispositivos','id'));
     //return redirect ()->route('buscar.dispositivo', $id)->with('dispositivos');
 
     }
 
 
-     public function buscarLinea($id){//recibe id cliente $dispositivo_id
+    public function buscarLinea($id){//recibe $dispositivo_id
 
-    $dispositivo=Dispositivo::find($id);
-    $lineas=Linea::where('cliente_id','LIKE','%' . $dispositivo->cliente_id . '%')->get();
+    $dispositivoid=$id;
 
+    $lineas=Linea::where('dispositivo_id','LIKE','%' . $dispositivoid . '%')->get();
 
-
-    return view('prueba.buscarLinea',compact('lineas','dispositivo'));
+    return view('prueba.buscarLinea',compact('lineas','dispositivoid'));
 
 
     }

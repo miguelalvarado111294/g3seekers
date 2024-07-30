@@ -59,22 +59,26 @@ class DispositivoController extends Controller
     }
 
     public function stodis(Request $request ,$id){
+    $vehiculoid=$id;
+    $vehiculo=Vehiculo::find($vehiculoid);
+    $clienteid=$vehiculo->cliente_id;
 
-    $vehiculo=Vehiculo::where('cliente_id','LIKE', '%' . $id . '%')->first();
 
+//$vehiculo=Vehiculo::where('cliente_id','LIKE', '%' . $id . '%')->first();
     $dispositivo= new Dispositivo();
 
     $dispositivo->modelo=$request->modelo;
     $dispositivo->noserie=$request->noserie;
     $dispositivo->imei=$request->imei;
     $dispositivo->comentarios=$request->comentarios;
-    $dispositivo->cliente_id=$vehiculo->cliente_id;
-    $dispositivo->vehiculo_id=$vehiculo->id;
+    $dispositivo->vehiculo_id=$vehiculoid;
+    $dispositivo->cliente_id=$clienteid;
 
+ //       return $dispositivo;
 
     $dispositivo->save();
 
-    return redirect()->route('buscar.dispositivo',$id);
+    return redirect()->route('buscar.dispositivo', $vehiculoid=$id);
 
 
  }
@@ -114,7 +118,7 @@ class DispositivoController extends Controller
        // return response()->json($datosReferencia);
        // return redirect ('dispositivo')->with('mensaje','Registro editado exitosamente ');
 
-       return redirect()->route('buscar.dispositivo',$dispositivo->cliente_id);
+       return redirect()->route('buscar.dispositivo',$dispositivo->vehiculo_id);
 
 
     }

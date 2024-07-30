@@ -12,7 +12,7 @@
     </div>
     @endif
 
-<a href="{{route('vehiculof.crear' ,  $id)}}" class="btn btn-success" >Registrar nuevo vehiculo</a>
+<a href="{{route('vehiculof.crear' ,$id  )}}" class="btn btn-success" >Registrar nuevo vehiculo</a>
 
 <br><br>
             <h1>Vehiculos Adjuntos de Socios cn id {{$id}} </h1>
@@ -51,7 +51,7 @@
                 </form>
             </td>
             <td>
-                <a href="{{route('buscar.dispositivo' , $vehiculo->cliente_id)}}" class="btn btn-primary" >Dispositivo</a>
+                <a href="{{route('buscar.dispositivo' , $vehiculo->id)}}" class="btn btn-primary" >Dispositivo</a>
             </td>
         @endforeach
     </tbody>
