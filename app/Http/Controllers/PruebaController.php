@@ -19,7 +19,6 @@ class PruebaController extends Controller
     $clientes=Cliente::find($id);
     $clienteid=$clientes->id;
 
-
     return view('prueba.buscarCuenta', compact('cuentas','id','clienteid'));
 
     }
