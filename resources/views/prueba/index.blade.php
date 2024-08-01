@@ -1,12 +1,12 @@
 
-{{--  
+{{--
 <form action="{{route('cliente.index')}}" method="get">
     @csrf
     <div class="btn-group">
         <input type="text" name="busqueda" class="form-control">
         <input type="submit" value="enviar" class="btn btn-primary">
     </div>
-</form> 
+</form>
 --}}
 
 @extends('layouts.app')
@@ -21,7 +21,7 @@
         </button>
     </div>
     @endif
-            
+
 <br>
 <br>
 <br>
@@ -49,11 +49,11 @@
             <td><img src="{{ asset('storage') . '/' . $clientes->tarjetacirculacion }}"  width="200" alt=""> </td>
             <td><img src="{{ asset('storage') . '/' . $clientes->compPago    }}" width="200" alt="">            </td>
             <td>
-                
+
             </td>
-        </tr>  
-        
-        
+        </tr>
+
+
     </tbody>
 </table>
 

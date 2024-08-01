@@ -26,6 +26,7 @@
             <th>simcard</th>
             <th>tipoLínea</th>
             <th>Fecha contratacion</th>
+            <th>Comentarios</th>
             <th>acciones</th>
 
 
@@ -40,6 +41,8 @@
                 <td>{{$linea->simcard}}</td>
                 <td>{{$linea->tipolinea}}</td>
                 <td>{{$linea->renovacion }} </td>
+                <td>{{$linea->comentarios }} </td>
+
 
             <td>
                 <a href="{{url('/linea/' . $linea->id . '/edit')}}" class="btn btn-warning" >Editar</a>

@@ -25,8 +25,9 @@
             <th>Modelo</th>
             <th>Numero de Serie</th>
             <th>Imei</th>
+            <th>Comentarios</th>
             <th>Acciones</th>
-            <th></th>
+            <th>Lineas y Sensores</th>
 
         </tr>
     </thead>
@@ -38,6 +39,7 @@
             <td>{{$dispositivo->modelo}}</td>
             <td>{{$dispositivo->noserie}}</td>
             <td>{{$dispositivo->imei}}</td>
+            <td>{{$dispositivo->comentarios}}</td>
 
 <td>
     <a href="{{url('/dispositivo/' . $dispositivo->id . '/edit')}}" class="btn btn-warning" >Editar</a>

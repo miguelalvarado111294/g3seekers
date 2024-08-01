@@ -31,35 +31,15 @@
     <br>
     </div>
 
-{{--
     <div class="form-group">
-        <label for="cliente_id">Cliente</label>
-        <select class="form-control" name="cliente_id" >
-            @foreach ($clientes as $cliente)
-       <option value="{{isset($cliente->id)?$cliente->id:old('cliente_id')}}" id="cliente_id">{{ $cliente['nombre'] }} {{ $cliente['apellidopat'] }} {{ $cliente['apellidomat'] }} </option>
-       @endforeach
-              </select>
-
-
-
-
-    <div class="form-group">
-        <label for="vehiculo_id">vehiculo_id</label>
-        <select class="form-control" name="vehiculo_id" >
-            @foreach ($vehiculos as $vehiculo)
-       <option value="{{isset($vehiculo->id)?$vehiculo->id:old('vehiculo_id')}}" id="vehiculo_id">{{ $vehiculo['marca'] }} {{ $vehiculo['modelo'] }}{{ $vehiculo['color'] }}  </option>
-       @endforeach
-              </select>
-
-              --}}
-
-
-
-
-
-
-
-
+        <label for="comentarios">comentarios</label>
+        <input type="text" class="form-control" name="comentarios"
+        value="{{isset($cuenta->comentarios)?$cuenta->comentarios:old('comentarios')}}" id="comentarios">
+        @error('contraseniaParo');
+        <small style ="color: red"> {{$message}}</small>
+        @enderror
+        <br>
+    </div>
 
     <div class="form-group">
     <input class="btn btn-success" type="submit" class="form-control" value="{{$modo}} datos">
@@ -67,7 +47,4 @@
 
     <br><br>
 
-    <div class="form-group">
-    <a href="{{url('/referencia')}}" class="btn btn-dark" >Regresar</a>
-    </div>
-    <br>
+

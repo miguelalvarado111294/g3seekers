@@ -41,6 +41,15 @@
         @enderror
         <br>
 
+        <div class="form-group">
+            <label for="comentarios">comentarios</label>
+            <input type="text" class="form-control" name="comentarios"
+            value="{{isset($cuenta->comentarios)?$cuenta->comentarios:old('comentarios')}}" id="comentarios">
+            @error('contraseniaParo');
+            <small style ="color: red"> {{$message}}</small>
+            @enderror
+            <br>
+        </div>
 
 
     <div class="form-group">

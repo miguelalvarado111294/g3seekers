@@ -15,7 +15,7 @@
 <a href="{{route('vehiculof.crear' ,$id  )}}" class="btn btn-success" >Registrar nuevo vehiculo</a>
 
 <br><br>
-            <h1>Vehiculos Adjuntos de Socios cn id {{$id}} </h1>
+            <h1>Vehiculos Adjuntos de Socios </h1>
 <table class="table table-light">
     <thead class="thead-light">
         <tr>
@@ -26,6 +26,7 @@
             <th>Placa</th>
             <th>Tipo de Unidad</th>
             <th>Numero de Serie</th>
+            <th>Comentarios</th>
             <th>Acciones</th>
             <th></th>
 
@@ -41,6 +42,7 @@
             <td>{{$vehiculo->placa}} </td>
             <td> {{$vehiculo->placa}} </td>
             <td>{{$vehiculo->noserie}}</td>
+            <td> {{$vehiculo->comentarios}} </td>
             <td>
                 <a href="{{url('/vehiculo/' . $vehiculo->id . '/edit')}}" class="btn btn-warning" >Editar</a>
                 <form action="{{url('/vehiculo/' .  $vehiculo->id)}}" method="post" class="d-inline">

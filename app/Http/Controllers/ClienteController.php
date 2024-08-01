@@ -84,7 +84,6 @@ class ClienteController extends Controller
 
 public function edit($id)//recive el id del cliente para editarlo
 {
-
     $cliente=cliente::findOrfail($id);
     return view ('cliente.edit',compact('cliente'));
 }
@@ -159,10 +158,8 @@ public function edit($id)//recive el id del cliente para editarlo
     public function destroy($id)
     {
         $cliente=Cliente::findOrFail($id);
-  /*     if(Storage::delete('public/'. $cliente->actaconstitutiva)){
-  espacio para eliminar foto del storage implemetntar ... mas tardee :9
-      }*/
-    Cliente::destroy($id);
+
+        Cliente::destroy($id);
     return redirect ('cliente')->with('mensaje','Cliente eliminado exitosamente ');
     }
 
@@ -175,10 +172,3 @@ public function buscararchivos($id){
 
 
 }
-/*
-        $busqueda= $request->busqueda;
-        $clientes['clientes']=cliente::where('rfc' , 'LIKE' , '%' . $busqueda . '%')
-        ->orWhere('apellidopat' , 'LIKE' , '%' . $busqueda . '%')
-        ->orWhere('telefono' , 'LIKE' , '%' . $busqueda . '%')
-        ->paginate(10);
-*/

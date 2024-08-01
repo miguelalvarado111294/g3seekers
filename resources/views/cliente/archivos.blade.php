@@ -1,3 +1,7 @@
+@extends('layouts.app')
+@section('content')
+<div class="container">
+
 
 <table class="table table-light">
     <thead class="thead-light">
@@ -23,3 +27,16 @@
 </table>
     <br>
     <br>
+
+
+
+
+    <div class="form-group">
+        <a href="{{route('cliente.show',$cliente->id)}}" class="btn btn-dark" >Volver Atras</a>
+        </div>
+        <br>
+
+
+</div>
+@endsection
+

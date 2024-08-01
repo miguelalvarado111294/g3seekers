@@ -9,7 +9,24 @@
 @csrf
 <div class="form-group">
 
+<h1>Asignar vehiculo    </h1>
+<br>
+    <div class="form-group">
+        <label>Tipo de Vehiculo:</label>
 
+        <select name="tipo" class="form-control">
+        <option value="trailer">Trailer</option>
+        <option value="tractocamion" >Tractocamion</option>
+        <option value="motoneta">Motoneta</option>
+        <option value="motocicleta">Motocicleta</option>
+        <option value="auto" selected>Auto</option>
+        <option value="barco">Barco</option>
+        <option value="maquinaria_pesada">Maquinaria Pesada</option>
+        <option value="otro">Otro</option>
+    </select>
+
+    </div>
+<br>
 <label>Marca:</label>
 <input type="text" class="form-control" name="marca">
 </div>
@@ -38,29 +55,7 @@
     <label>Color:</label>
     <input type="text" class="form-control" name="color">
 </div>
-<br>
 
-<div class="form-group">
-    <label>Tipo de Vehiculo:</label>
-
-    <select name="tipo" class="form-control">
-    <option value="trailer">Trailer</option>
-    <option value="tractocamion" selected>Tractocamion</option>
-    <option value="motoneta">Motoneta</option>
-    <option value="motocicleta">Motocicleta</option>
-    <option value="auto">Auto</option>
-    <option value="barco">Barco</option>
-    <option value="maquinaria_pesada">Maquinaria Pesada</option>
-    <option value="otro">Otro</option>
-</select>
-
-</div>
-
-
- {{--   <div class="form-group">
-    <label>Tipo:</label>
-    <input type="text" class="form-control" name="tipo">
-</div>--}}
 <br>
 <div class="form-group">
     <label>Comentarios:</label>

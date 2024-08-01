@@ -25,6 +25,7 @@
             <th>Usuario</th>
             <th>Contraseña</th>
             <th>Contraseña de motor</th>
+            <th>Comentarios</th>
             <th>Acciones</th>
             <th>Vehiculos / Cuentas Espejo</th>
          </tr>
@@ -36,6 +37,7 @@
             <td>{{$cuenta->usuario}}</td>
             <td>{{$cuenta->contrasenia}}</td>
             <td>{{$cuenta->contraseniaParo}}</td>
+            <td>{{$cuenta->comentarios}}</td>
             <td>
 
                 <a href="{{url('/cuenta/' . $cuenta->id . '/edit')}}" class="btn btn-warning" >Editar</a>

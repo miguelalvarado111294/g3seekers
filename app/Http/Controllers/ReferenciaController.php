@@ -2,17 +2,9 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
-use GuzzleHttp\Referenci;
-use Illuminate\Support\Facades\Storage;
-use Validator;
-use Illuminate\Support\Facades\Route;
-
-
 use App\Models\referencia;
 use App\Models\cliente;
-
 
 class ReferenciaController extends Controller
 {
