@@ -26,29 +26,35 @@ class PruebaController extends Controller
 
     public function buscarVehiculo ($id){//recive id cliente desde buscar cta
         //return $id;
-
+    $cliente_id=$id;
     //obtener vehiculos relacionados con cliente id
-    $vehiculos= Vehiculo::where('cliente_id','LIKE','%' . $id . '%')->get();//busca vehiculos ligados a id de cliete
+    $vehiculos= Vehiculo::where('cliente_id','LIKE','%' . $id . '%')->get();//busca vehiculos ligados a id_cliete
 
 
-    return view('prueba.vehiculo',compact('vehiculos','id'));
+    return view('prueba.vehiculo',compact('vehiculos','id','cliente_id'));
     //se envia a view vehiculo id de cliente
 
     }
 
 
-    public function buscarDispositivo($id){//recibe desde view vehiculos id de vehiculo
-    $vehiculoid=$id;
+    public function buscarDispositivo($id){//recibe desde view vehiculos_id de vehiculo
+        
 
-    $dispositivos=Dispositivo::where('vehiculo_id','LIKE','%' . $id . '%')->get();
-    return view ('prueba.buscarDispositivo',compact('dispositivos','id'));
+    $vehiculoid=$id;
+    $vehiculo=vehiculo::find($vehiculoid);
+    $cliente_id=$vehiculo->cliente_id;
+
+    $dispositivos=Dispositivo::where('vehiculo_id','LIKE','%' . $id . '%')->get()->take(1);
+    
+
+    return view ('prueba.buscarDispositivo',compact('dispositivos','id','cliente_id'));
 
     }
 
     public function buscarLinea($id){//recibe $dispositivo_id
 
     $dispositivoid=$id;
-    $lineas=Linea::where('dispositivo_id','LIKE','%' . $dispositivoid . '%')->get();
+    $lineas=Linea::where('dispositivo_id','LIKE','%' . $dispositivoid . '%')->get()->take(1);
 
     return view('prueba.buscarLinea',compact('lineas','dispositivoid'));
 

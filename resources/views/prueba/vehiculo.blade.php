@@ -20,6 +20,7 @@
     <thead class="thead-light">
         <tr>
             <th>Id del vehiculo</th>
+            <th>id cliente</th>
             <th>Marca</th>
             <th>Modelo</th>
             <th>Color</th>
@@ -36,6 +37,7 @@
         @foreach ($vehiculos as $vehiculo)
         <tr>
             <td>{{$vehiculo->id}}</td>
+            <td> {{$cliente_id}} </td>
             <td>{{$vehiculo->marca}} </td>
             <td>{{$vehiculo->modelo}}</td>
             <td>{{$vehiculo->color}} </td>
@@ -59,6 +61,7 @@
     </tbody>
 </table>
 
+<a href=" {{route('buscar.cuenta', $cliente_id) }}" class="btn btn-primary">Regresar</a>
 
 
 </div>

@@ -16,7 +16,7 @@
 
 
 <br><br>
-<h1>Datos de dispositivo</h1>
+<h1>Datos de dispositivo</h1> {{$id}}
 </br>
 <table class="table table-light">
     <thead class="thead-light">
@@ -47,7 +47,7 @@
     <form action="{{url('/dispositivo/' .  $dispositivo->id)}}" method="post" class="d-inline">
     @csrf
     {{ method_field('DELETE') }}
-    <input class="btn btn-danger" type="submit" onclick=" return confirm('seguro quieres eliminar?')"
+    <input class="btn btn-danger" type="submit" onclick=" return confirm('Estas Seguro de Eliminar?')"
     value="Borrar">
     </form>
 </td>
@@ -66,6 +66,10 @@
 </table>
 <br><br><br>
 
+
+
+
+<a href=" {{route('buscar.vehiculo',$cliente_id) }}" class="btn btn-primary">Regresar</a>
 
 
 </div>

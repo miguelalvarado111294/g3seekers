@@ -62,6 +62,7 @@
 </table>
 <br><br>
 
+<a href=" {{route('buscar.dispositivo', $dispositivoid) }}" class="btn btn-primary">Regresar</a>
 
 </div>
 @endsection
