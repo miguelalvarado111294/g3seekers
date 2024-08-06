@@ -65,8 +65,12 @@ class PruebaController extends Controller
 
      public function buscarSensor($id){
 
-        $sensors=Sensor::where('dispositivo_id' , 'LIKE' , '%' . $id . '%')->get();
-        return view('prueba.buscarSensor',compact('sensors','id'));
+        $dispositivoid=$id;
+        $sensors=Sensor::where('dispositivo_id' , 'LIKE' , '%' . $dispositivoid . '%')->get();
+        $dispositivo=Dispositivo::find($dispositivoid);    
+        $vehiculoid=$dispositivo->vehiculo_id;
+        
+        return view('prueba.buscarSensor',compact('sensors','id','vehiculoid'));
 
      }
 
