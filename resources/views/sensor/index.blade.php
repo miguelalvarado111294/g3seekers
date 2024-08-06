@@ -38,7 +38,6 @@
             <td>{{$sensor->modelo}}</td>  
             <td>{{$sensor->noserie}}</td>
             <td>{{$sensor->tipo}}</td>
-            <td>{{$sensor->dispositivo->id}}</td>
 
             
             <td>

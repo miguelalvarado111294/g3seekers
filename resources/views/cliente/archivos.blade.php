@@ -17,11 +17,11 @@
 
     <tbody>
         <tr>
-            <td><img src="{{ asset('storage') . '/' . $archivos->actaconstitutiva    }}" width="200" alt=""> </td>
-            <td><img src="{{ asset('storage') . '/' . $archivos->consFiscal  }}" width="200" alt="">         </td>
-            <td><img src="{{ asset('storage') . '/' . $archivos->comprDom    }}" width="200" alt="">               </td>
-            <td><img src="{{ asset('storage') . '/' . $archivos->tarjetacirculacion }}"  width="200" alt=""> </td>
-            <td><img src="{{ asset('storage') . '/' . $archivos->compPago    }}" width="200" alt="">            </td>
+            <td><img src="{{ asset('storage') . '/' . $cliente->actaconstitutiva    }}" width="200" alt=""> </td>
+            <td><img src="{{ asset('storage') . '/' . $cliente->consFiscal  }}" width="200" alt="">         </td>
+            <td><img src="{{ asset('storage') . '/' . $cliente->comprDom    }}" width="200" alt="">               </td>
+            <td><img src="{{ asset('storage') . '/' . $cliente->tarjetacirculacion }}"  width="200" alt=""> </td>
+            <td><img src="{{ asset('storage') . '/' . $cliente->compPago    }}" width="200" alt="">            </td>
         </tr>
     </tbody>
 </table>

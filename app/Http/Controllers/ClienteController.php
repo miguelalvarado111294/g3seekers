@@ -31,15 +31,21 @@ class ClienteController extends Controller
 
             $datosCliente = $request->except('_token');
             //insertar FILES al store
+
             if($request->hasFile('actaconstitutiva')) {
             $datosCliente['actaconstitutiva']=$request->file('actaconstitutiva')->store('uploads','public');
-            }elseif($request->hasFile('consFiscal')){
+            }
+            
+            if($request->hasFile('consFiscal')){
             $datosCliente['consFiscal']=$request->file('consFiscal')->store('uploads','public');
-            }elseif($request->hasFile('comprDom')){
+            }
+            if($request->hasFile('comprDom')){
             $datosCliente['comprDom']=$request->file('comprDom')->store('uploads','public');
-            }elseif($request->hasFile('tarjetacirculacion')){
+            }
+            if($request->hasFile('tarjetacirculacion')){
             $datosCliente['tarjetacirculacion']=$request->file('tarjetacirculacion')->store('uploads','public');
-            }elseif($request->hasFile('compPago')){
+            }
+            if($request->hasFile('compPago')){
             $datosCliente['compPago']=$request->file('compPago')->store('uploads','public');
             }
 
@@ -164,9 +170,9 @@ public function edit($id)//recive el id del cliente para editarlo
 public function buscararchivos($id){
 
     $archivos=Cliente::find($id);
-    
+    $cliente=Cliente::find($id);
 
-    return view('cliente.archivos',compact('archivos'));
+    return view('cliente.archivos',compact('archivos','cliente'));
 }
 
 

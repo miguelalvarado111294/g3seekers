@@ -30,6 +30,14 @@ return view('sensor.createid',['id'=>$id]);
 
 public function stosens (Request $request,$id){
 
+    $request->validate([
+        'marca'=>'required|alpha|min:2|max:100',
+        'modelo'=> 'required|nullable|alpha_dash',
+        'noserie'=>'required|alpha_dash|min:2|max:100',
+        'tipo'=>'required|alpha|min:2|max:100'
+
+    ]);
+
     $sensor = new Sensor;
     $sensor->marca=$request->marca;
     $sensor->modelo=$request->modelo;
@@ -45,6 +53,8 @@ public function stosens (Request $request,$id){
     public function store(Request $request)
     {
 
+
+        
         $campos= [
             'marca'=>'required|alpha|min:2|max:100',
             'modelo'=> 'required|nullable|alpha_dash',
@@ -53,12 +63,13 @@ public function stosens (Request $request,$id){
 
            ];
 
-        $this->validate($request,$campos/*$mensaje*/);
+        $this->validate($request,$campos);
         $datosSensor = $request->except('_token');
         sensor::insert($datosSensor);
 
         return redirect ('sensor')->with('mensaje','sensor agregado exitosamente ');
 
+    
     }
 
     public function show(sensor $sensor)
@@ -79,6 +90,22 @@ public function stosens (Request $request,$id){
     public function update(Request $request, $id)
     {
 
+    $request->validate([
+        'marca'=>'required|alpha|min:2|max:100',
+        'modelo'=> 'required|nullable|alpha_dash',
+        'noserie'=>'required|alpha_dash|min:2|max:100',
+        'tipo'=>'required|alpha|min:2|max:100'
+
+    ]);
+
+    $sensor=Sensor::where('id','=',$id)->update($request->except(['_token', '_method']));
+    $sensor=Sensor::find($id);
+
+
+//return $sensor;
+return redirect()->route('buscar.sensor',$id);
+
+        /*
         $campos= [
             'marca'=>'required|alpha|min:2|max:100',
             'modelo'=> 'required|nullable|alpha_dash',
@@ -87,12 +114,12 @@ public function stosens (Request $request,$id){
 
            ];
 
-     $this->validate($request,$campos/*$mensaje*/);
+     $this->validate($request,$campos);
      $datosSensor = $request->except(['_token', '_method']);
 
      sensor::where('id','=',$id)->update($datosSensor);
         return redirect ('sensor')->with('mensaje','sensor editado exitosamente ');
-
+*/
     }
 
  public function destroy($id)
