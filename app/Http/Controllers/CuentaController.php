@@ -45,6 +45,12 @@ public function crearcta ($id){
 
 public function stocta (Request $request,$id){
 
+$request->validate([
+        'usuario'=>'required|alpha_dash|min:2|max:15',
+        'contrasenia'=>'required|alpha_dash|min:2|max:15',
+        'contraseniaParo'=>'required|alpha_dash|min:2|max:100'
+]);
+
     $cuenta=Cuenta::create([
         'usuario'=>$request->usuario,
         'contrasenia'=>$request->usuario,
@@ -91,20 +97,14 @@ public function stocta (Request $request,$id){
     public function update(Request $request, $id)
     {
 
-        $campos= [
+        $request->validate([
             'usuario'=>'required|alpha_dash|min:2|max:15',
             'contrasenia'=>'required|alpha_dash|min:2|max:15',
             'contraseniaParo'=>'required|alpha_dash|min:2|max:100'
+        ]);
 
-           ];
-
-         $this->validate($request,$campos/*$mensaje*/);
-     $datosCuenta = $request->except(['_token', '_method']);
-
-     Cuenta::where('id','=',$id)->update($datosCuenta);
+     $cuenta=Cuenta::where('id','=',$id)->update($request->except(['_token', '_method']));
      $cuenta=Cuenta::findOrFail($id);
-
-
     return redirect()->route('buscar.cuenta',$cuenta->cliente_id);
     }
 

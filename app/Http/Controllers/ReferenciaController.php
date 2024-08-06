@@ -30,40 +30,47 @@ public function crearref($id)
 
 public function storef(Request $request ,$id){
 
-$referencia= new referencia();
-$referencia->nombre=$request->nombre;
-$referencia->segnombre=$request->segnombre;
-$referencia->apellidopat=$request->apellidopat;
-$referencia->apellidomat=$request->apellidomat;
-$referencia->parentesco=$request->parentesco;
-$referencia->telefono=$request->telefono;
-$referencia->cliente_id=$id;
-$referencia->save();
-return redirect()->route('cliente.show',$id);
+    $request->validate([
+        'nombre'=>'required|alpha|min:2|max:100',
+        'segnombre'=> 'nullable|alpha',
+        'apellidopat'=>'required|alpha|min:2|max:100',
+        'apellidomat'=>'required|alpha|min:2|max:100',
+        'telefono'=>'required|numeric|digits:10',
+        'parentesco'=>'required'
+       ]);
+
+        $referencia=Referencia::create([
+        'nombre'=>$request->nombre,
+        'segnombre'=>$request->segnombre,
+        'apellidopat'=>$request->apellidopat,
+        'apellidomat'=>$request->apellidomat,
+        'parentesco'=>$request->parentesco,
+        'telefono'=>$request->telefono,
+        'cliente_id'=>$id
+        ]);
+
+        return redirect()->route('cliente.show',$id);
 
 }
 
 
-    public function store(Request $request)
+public function store(Request $request)
     {
 
-        $campos= [
-            'nombre'=>'required|alpha|min:2|max:100',
-            'segnombre'=> 'nullable|alpha',
-            'apellidopat'=>'required|alpha|min:2|max:100',
-            'apellidomat'=>'required|alpha|min:2|max:100',
-            'telefono'=>'required|numeric|digits:10',
-            'parentesco'=>'required'
-           ];
+    $request->validate([
+        'nombre'=>'required|alpha|min:2|max:100',
+        'segnombre'=> 'nullable|alpha',
+        'apellidopat'=>'required|alpha|min:2|max:100',
+        'apellidomat'=>'required|alpha|min:2|max:100',
+        'telefono'=>'required|numeric|digits:10',
+        'parentesco'=>'required'
+       ]);
 
-        $this->validate($request,$campos/*$mensaje*/);
-        $datosReferencia = $request->except('_token');
-
-        Referencia::insert($datosReferencia);
-
-        return redirect ('referencia')->with('mensaje','Referencia agregado exitosamente ');
+    Referencia::create($request->all());
+    return redirect ('referencia')->with('mensaje','Referencia agregado exitosamente ');
 
     }
+
 
     public function show(referencia $referencia)
     {
@@ -81,7 +88,7 @@ return redirect()->route('cliente.show',$id);
     public function update(Request $request, $id)
     {
 
-        $campos= [
+        $request->validate([
             'nombre'=>'required|alpha|min:2|max:100',
             'segnombre'=> 'nullable|alpha',
             'apellidopat'=>'required|alpha|min:2|max:100',
@@ -89,15 +96,11 @@ return redirect()->route('cliente.show',$id);
             'telefono'=>'required|numeric|digits:10',
             'parentesco'=>'required'
 
-           ];
+           ]);
 
-     $this->validate($request,$campos/*$mensaje*/);
-     $datosReferencia = $request->except(['_token', '_method']);
-
-     Referencia::where('id','=',$id)->update($datosReferencia);
-     $referencia=Referencia::findOrFail($id);
-
-    return redirect()->route('cliente.show',$referencia->cliente_id);
+        $referencia=Referencia::where('id','=',$id)->update($request->except(['_token', '_method']));
+        $referencia=Referencia::find($id);
+        return redirect()->route('cliente.show',$referencia->cliente_id);
 
     }
 

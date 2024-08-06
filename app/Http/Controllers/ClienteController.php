@@ -106,7 +106,6 @@ public function edit($id)//recive el id del cliente para editarlo
             'comprDom'=>'mimes:pdf,jpeg,png,jpg|max:5000',
             'tarjetacirculacion'=>'mimes:pdf,jpeg,png,jpg,pdf|max:5000',
             'compPago'=>'mimes:pdf,jpeg,png,jpg|max:5000'
-
            ];
 
         $this->validate($request,$campos/*$mensaje*/);
@@ -150,7 +149,6 @@ public function edit($id)//recive el id del cliente para editarlo
 
         Cliente::where('id','=',$id)->update($datosCliente);
         $cliente=Cliente::findOrFail($id);
-        //return view ('cliente.edit', compact('cliente'));
 
         return redirect ('cliente')->with('mensaje','Cliente editado exitosamente ');
     }

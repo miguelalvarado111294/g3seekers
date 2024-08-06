@@ -54,9 +54,30 @@ class DispositivoController extends Controller
     }
 
     public function stodis(Request $request ,$id){
+
     $vehiculoid=$id;
     $vehiculo=Vehiculo::find($vehiculoid);
     $clienteid=$vehiculo->cliente_id;
+
+    $request->validate([
+        'modelo'=>'required|alpha_dash|min:2|max:100',
+        'noserie'=>'required|alpha_dash|min:20',
+        'imei'=>'required|numeric|min:2|min:18'
+    ]);
+
+/*
+        $dispositivo=Dispositivo::create([
+        'modelo'=>$request->modelo,
+        'noserie'=>$request->noserie,
+        'imei'=>$request->imei,
+        'comentarios'=>$request->comentarios,
+        'cliente_id'=>$clienteid,
+        'vehiculo_id'=>$vehiculoid
+        
+        ]);
+
+        return $dispositivo;
+*/
 
     $dispositivo= new Dispositivo();
     $dispositivo->modelo=$request->modelo;

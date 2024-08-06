@@ -21,6 +21,12 @@ class referencia extends Model
         'cliente_id'
 
     ];
+/*
+    protected $guarded = [
+        '_token',
+        '_method'
+    ];*/
+
 public function cliente(){
 
     return $this->belongsTo('App\Models\Cliente','cliente_id','id');

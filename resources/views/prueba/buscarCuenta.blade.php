@@ -61,7 +61,7 @@
  {{-- <a href="{{url('/prueba/' . $cuentas->$cliente_id  . '/buscarVehiculo')}}" class="btn btn-success  float-right" >Vehiculos</a>
  
 --}}
-<a href=" {{route('cliente.show', $id) }}" class="btn btn-primary">Regresar</a>
+<a href=" {{route('cliente.show', $id) }}" class="btn btn-dark">Regresar</a>
 
 
 <br><br>

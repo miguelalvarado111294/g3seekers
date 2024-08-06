@@ -35,18 +35,25 @@ class VehiculoController extends Controller
 
     public function stovehi(Request $request ,$id){
 
-    $vehiculo= new vehiculo();
-    $vehiculo->marca=$request->marca;
-    $vehiculo->modelo=$request->modelo;
-    $vehiculo->noserie=$request->noserie;
-    $vehiculo->placa=$request->placa;
-    $vehiculo->color=$request->color;
-    $vehiculo->comentarios=$request->comentarios;
-    $vehiculo->tipo=$request->tipo;
+        $request->validate([
+            'marca'=>'required|alpha_dash|min:2|max:100',
+            'modelo'=> 'alpha_num',
+            'noserie'=>'required|alpha_dash|min:18',
+            'placa'=>'required|alpha_dash|min:8',
+            'color'=>'required|string|max:10'
+           ]);
 
-    $vehiculo->cliente_id=$id;
-
-    $vehiculo->save();
+        
+        $vehiculo=Vehiculo::create([
+        'marca'=>$request->marca,
+        'modelo'=>$request->modelo,
+        'noserie'=>$request->noserie,
+        'placa'=>$request->placa,
+        'color'=>$request->color,
+        'tipo'=>$request->tipo,
+        'comentarios'=>$request->comentarios,
+        'cliente_id'=>$id
+    ]);
 
     return redirect()->route('buscar.vehiculo',$id);
 }
@@ -81,21 +88,22 @@ class VehiculoController extends Controller
     public function update(Request $request,$id)
     {
 
-        $campos= [
+        $request->validate([
             'marca'=>'required|alpha_dash|min:2|max:100',
             'modelo'=> 'alpha_num',
             'noserie'=>'required|alpha_dash|min:18',
             'placa'=>'required|alpha_dash|min:8',
            'color'=>'required|string|max:10'
+        
+        ]);
 
-           ];
+        $vehiculo=Vehiculo::where('id','=',$id)->update($request->except(['_token', '_method']));
+        $vehiculo=Vehiculo::find($id);
+        return redirect()->route('buscar.vehiculo',$vehiculo->cliente_id);
+ 
+}
+    
 
-    $this->validate($request,$campos/*$mensaje*/);
-    $datosVehiculo = $request->except(['_token', '_method']);
-    Vehiculo::where('id','=',$id)->update($datosVehiculo);
-    $vehiculo=Vehiculo::findOrFail($id);
-    return redirect()->route('buscar.vehiculo', $vehiculo->cliente_id);
-    }
 
      public function destroy($id)
     {

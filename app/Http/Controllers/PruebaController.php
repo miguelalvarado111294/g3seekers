@@ -47,7 +47,7 @@ class PruebaController extends Controller
     $dispositivos=Dispositivo::where('vehiculo_id','LIKE','%' . $id . '%')->get()->take(1);
     
 
-    return view ('prueba.buscarDispositivo',compact('dispositivos','id','cliente_id'));
+    return view ('prueba.buscarDispositivo',compact('dispositivos','id','cliente_id','vehiculoid'));
 
     }
 
@@ -56,7 +56,10 @@ class PruebaController extends Controller
     $dispositivoid=$id;
     $lineas=Linea::where('dispositivo_id','LIKE','%' . $dispositivoid . '%')->get()->take(1);
 
-    return view('prueba.buscarLinea',compact('lineas','dispositivoid'));
+    $dispositivo=Dispositivo::find($dispositivoid);    
+    $vehiculoid=$dispositivo->vehiculo_id;
+
+    return view('prueba.buscarLinea',compact('lineas','dispositivoid','vehiculoid'));
 
     }
 

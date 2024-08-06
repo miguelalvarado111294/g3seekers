@@ -62,7 +62,7 @@
 </table>
 <br><br>
 
-<a href=" {{route('buscar.dispositivo', $dispositivoid) }}" class="btn btn-primary">Regresar</a>
+<a href=" {{route('buscar.dispositivo', $vehiculoid) }}" class="btn btn-primary">Regresar</a>
 
 </div>
 @endsection

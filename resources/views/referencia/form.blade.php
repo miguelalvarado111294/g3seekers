@@ -71,8 +71,7 @@
 
     <div class="form-group">
 
-        {{--
-        <select name="cliente_id" class="form-control" name="cliente_id" id="cliente_id">
+        {{--        <select name="cliente_id" class="form-control" name="cliente_id" id="cliente_id">
         @foreach ($clientes as $cliente)
            <option value="{{$cliente['cliente_id']}}"> {{ $cliente['nombre'] }}</option>
         @endforeach

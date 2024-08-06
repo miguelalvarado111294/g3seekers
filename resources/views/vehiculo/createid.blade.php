@@ -27,39 +27,60 @@
 
     </div>
 <br>
-<label>Marca:</label>
-<input type="text" class="form-control" name="marca">
+<div class="form-group">
+<label>Marca</label>
+<input type="text" class="form-control" name="marca" value=" {{old('marca')}} ">
 </div>
-<br>
+@error('marca');
+        <small style ="color: red"> {{$message}}</small>
+        @enderror
+        <br>
+
 
 <div class="form-group">
 <label>Modelo</label>
-<input type="text" class="form-control" name="modelo">
+<input type="text" class="form-control" name="modelo" value=" {{old('modelo')}} ">
 </div>
+@error('modelo');
+        <small style ="color: red"> {{$message}}</small>
+        @enderror
+        <br>
 <br>
 
 <div class="form-group">
 <label>Numero de Serie</label>
-<input type="text" class="form-control" name="noserie">
+<input type="text" class="form-control" name="noserie" value=" {{old('noserie')}} ">
 </div>
+@error('noserie');
+        <small style ="color: red"> {{$message}}</small>
+        @enderror
+        <br>
 <br>
 
 
 <div class="form-group">
     <label>Numero de Placa:</label>
-    <input type="text" class="form-control" name="placa">
+    <input type="text" class="form-control" name="placa" value=" {{old('placa')}} ">
 </div>
+@error('placa');
+        <small style ="color: red"> {{$message}}</small>
+        @enderror
+        <br>
 <br>
 
     <div class="form-group">
     <label>Color:</label>
-    <input type="text" class="form-control" name="color">
+    <input type="text" class="form-control" name="color" value=" {{old('color')}} ">
 </div>
+@error('color');
+        <small style ="color: red"> {{$message}}</small>
+        @enderror
+        <br>
 
 <br>
 <div class="form-group">
     <label>Comentarios:</label>
-    <input type="text" class="form-control" name="comentarios">
+    <input type="text" class="form-control" name="comentarios" value=" {{old('color')}} ">
 </div>
 <br>
 
