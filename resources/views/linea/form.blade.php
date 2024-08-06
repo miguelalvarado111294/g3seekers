@@ -61,6 +61,6 @@
     <br><br><br>
 
     <div class="form-group">
-    <a href="{{url('/linea')}}" class="btn btn-dark" >Regresar</a>
+    <a href="{{ URL::previous() }}" class="btn btn-dark">Regresar</a>
     </div>
     <br>

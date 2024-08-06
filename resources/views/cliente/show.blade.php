@@ -76,6 +76,6 @@
 </table>
 <br><br><br>
 
-
+<a href="{{url('cliente')}}" class="btn btn-dark">Regresar</a>
 </div>
 @endsection

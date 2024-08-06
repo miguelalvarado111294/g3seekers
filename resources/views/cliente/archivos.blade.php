@@ -32,7 +32,7 @@
 
 
     <div class="form-group">
-        <a href="{{route('cliente.show',$cliente->id)}}" class="btn btn-dark" >Volver Atras</a>
+    <a href="{{ URL::previous() }}" class="btn btn-dark">Regresar</a>
         </div>
         <br>
 

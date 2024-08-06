@@ -164,6 +164,7 @@ public function edit($id)//recive el id del cliente para editarlo
 public function buscararchivos($id){
 
     $archivos=Cliente::find($id);
+    
 
     return view('cliente.archivos',compact('archivos'));
 }

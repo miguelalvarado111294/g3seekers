@@ -45,6 +45,10 @@
     <input class="btn btn-success" type="submit" class="form-control" value="{{$modo}} datos">
     </div>
 
+<br>
+    <a href="{{ URL::previous() }}" class="btn btn-dark">Regresar</a>
+
+
     <br><br>
 
 
